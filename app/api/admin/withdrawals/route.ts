@@ -38,7 +38,7 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    // 🚀 BỔ SUNG: Nhận thêm biến description (lý do từ chối) từ Frontend
+    //  BỔ SUNG: Nhận thêm biến description (lý do từ chối) từ Frontend
     const { id, status, description } = body; 
 
     const transaction = await prisma.transaction.findUnique({
@@ -70,7 +70,7 @@ export async function PATCH(request: Request) {
           where: { id: Number(id) },
           data: { 
             status: "FAILED", 
-            // 🚀 BỔ SUNG: Ưu tiên lưu lý do Admin nhập, kèm thêm câu "Đã hoàn tiền" cho rõ ràng
+            //  BỔ SUNG: Ưu tiên lưu lý do Admin nhập, kèm thêm câu "Đã hoàn tiền" cho rõ ràng
             description: description ? `${description} (Hệ thống đã hoàn tiền)` : (transaction.description + " - Bị từ chối và Hoàn tiền")
           }
         }),

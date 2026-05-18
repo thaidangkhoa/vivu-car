@@ -13,7 +13,7 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
     }
 
     const resolvedParams = await params;
-    // 🚀 SỬA TẠI ĐÂY: Giữ nguyên dạng chuỗi (String), KHÔNG dùng Number()
+    //  SỬA TẠI ĐÂY: Giữ nguyên dạng chuỗi (String), KHÔNG dùng Number()
     const blockId = resolvedParams.id; 
 
     if (!blockId) {

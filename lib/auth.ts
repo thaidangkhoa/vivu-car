@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
-import bcrypt from "bcryptjs"; // 🚀 Import thư viện giải mã
+import bcrypt from "bcryptjs"; //  Import thư viện giải mã
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -21,9 +21,11 @@ export const authOptions: NextAuthOptions = {
           where: { phone: credentials.phone }
         });
 
-        if (!user) throw new Error("Số điện thoại không tồn tại");
+        if (!user || !user.password) {
+          throw new Error("Số điện thoại không tồn tại hoặc tài khoản chưa thiết lập mật khẩu");
+        }
 
-        // 🚀 So sánh mật khẩu bằng bcrypt (Giải quyết lỗi không khớp Hash)
+        //  So sánh mật khẩu bằng bcrypt (Giải quyết lỗi không khớp Hash)
         const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
 
         if (!isPasswordValid) {
@@ -51,7 +53,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        // 🚀 Bọc lại cẩn thận để chống sập ngầm
+        //  Bọc lại cẩn thận để chống sập ngầm
         session.user = {
           ...session.user,
           id: token.id as string,

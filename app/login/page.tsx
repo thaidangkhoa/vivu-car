@@ -27,7 +27,7 @@ function LoginContent() {
   };
 
   const handleLoginSuccess = () => {
-    /** * 🚀 GIẢI PHÁP CHO LỖI KẸT TRANG LOGIN:
+    /** *  GIẢI PHÁP CHO LỖI KẸT TRANG LOGIN:
      * Sử dụng window.location.href để ép trình duyệt tải lại toàn bộ trang web.
      * Việc này giúp Navbar nhận diện User mới trong localStorage ngay lập tức.
      */

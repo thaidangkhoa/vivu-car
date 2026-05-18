@@ -129,7 +129,7 @@ export default function CheckoutPage() {
     if (!session?.user?.id) return alert("Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!");
     if (!formData.name || !formData.phone) return alert("Vui lòng nhập tên và số điện thoại!");
     
-    // 🚀 LỚP BẢO VỆ NGHIỆP VỤ GIAO XE
+    //  LỚP BẢO VỆ NGHIỆP VỤ GIAO XE
     if (isDeliveryFromUrl) {
       if (!formData.deliveryAddress.trim()) {
         return alert(`Vui lòng nhập địa chỉ giao xe chi tiết tại khu vực ${car?.location}!`);
@@ -248,7 +248,7 @@ export default function CheckoutPage() {
                     <span className="text-[10px] font-black text-orange-600 uppercase">Phí: {formatCurrency(billing.deliveryFee)}</span>
                   </div>
                   
-                  {/* 🚀 FORM NHẬP ĐỊA CHỈ & LỜI CẢNH BÁO */}
+                  {/*  FORM NHẬP ĐỊA CHỈ & LỜI CẢNH BÁO */}
                   <div className="space-y-2 mt-4 animate-in fade-in slide-in-from-top-4">
                     <label className="text-[10px] font-black text-blue-600 uppercase tracking-widest ml-1 italic flex items-center gap-1.5">
                       <MapPin size={12}/> Địa chỉ giao xe (Nội thành {car.location}) *

@@ -119,7 +119,7 @@ export default async function CarsPage({ searchParams }) {
   const locationObj = POPULAR_LOCATIONS.find(l => l.value === locationSearch);
   const locationLabel = locationObj ? locationObj.label : "Toàn quốc";
 
-  // 🚀 ĐÃ BỔ SUNG: Helper render nhãn giá tiền hiển thị thêm mức 2 triệu và 3 triệu
+  //  ĐÃ BỔ SUNG: Helper render nhãn giá tiền hiển thị thêm mức 2 triệu và 3 triệu
   const getPriceLabel = (range) => {
     switch(range) {
       case "0-500000": return "Dưới 500K";
@@ -146,7 +146,7 @@ export default async function CarsPage({ searchParams }) {
       <div className="container mx-auto px-4 max-w-7xl">
         
         {/* BẢNG TÓM TẮT BỘ LỌC */}
-        <div className="bg-white p-6 md:p-8 rounded-[40px] shadow-sm border border-gray-100 mb-12 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+        <div className="bg-white p-6 md:p-8 pb-4 md:pb-4 rounded-[40px] shadow-sm border border-gray-100 mb-0 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
           <div className="flex items-start lg:items-center gap-6 flex-1 w-full">
             <div className="w-16 h-16 bg-blue-600 rounded-[24px] items-center justify-center text-white shadow-xl rotate-3 shrink-0 hidden sm:flex">
               <Filter size={32} />
@@ -194,7 +194,7 @@ export default async function CarsPage({ searchParams }) {
                 <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 italic flex items-center gap-2">
                   <Banknote size={14} /> Lọc theo mức giá thuê
                 </h3>
-                {/* 🚀 ĐÃ BỔ SUNG: Dải nút bấm lọc giá được thêm đầy đủ */}
+                {/*  ĐÃ BỔ SUNG: Dải nút bấm lọc giá được thêm đầy đủ */}
                 <div className="flex flex-wrap gap-3">
                   <Link 
                     href={buildFilterUrl("price", "")} 

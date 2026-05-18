@@ -9,7 +9,7 @@ import {
   Gift, BarChart3, LogOut, ShieldCheck, MessageSquare
 } from "lucide-react";
 
-// 🚀 IMPORT COMPONENT CÁI CHUÔNG THÔNG BÁO VỪA TẠO
+//  IMPORT COMPONENT CÁI CHUÔNG THÔNG BÁO VỪA TẠO
 import AdminNotificationBell from "@/components/admin/AdminNotificationBell";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -21,10 +21,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   const adminMenus = [
-    { name: "Quản trị Đơn hàng", icon: <ClipboardList size={20} />, path: "/admin" },
-    { name: "Quản trị Đội xe", icon: <CarFront size={20} />, path: "/admin/cars" },
+    { name: "Quản lý Đơn hàng", icon: <ClipboardList size={20} />, path: "/admin" },
+    { name: "Quản lý Đội xe", icon: <CarFront size={20} />, path: "/admin/cars" },
     { name: "Quản lý Hợp tác", icon: <Handshake size={20} />, path: "/admin/approve-cars" },
-    { name: "Quản trị Mã ưu đãi", icon: <Gift size={20} />, path: "/admin/promotions" },
+    { name: "Quản lý Mã ưu đãi", icon: <Gift size={20} />, path: "/admin/promotions" },
     { name: "Thống kê & Doanh thu", icon: <BarChart3 size={20} />, path: "/admin/reports" },
     { name: "Yêu cầu hỗ trợ", icon: <MessageSquare size={20} />, path: "/admin/contacts" },
   ];
@@ -86,7 +86,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           
           <div className="flex items-center gap-6">
             
-            {/* 🚀 GẮN COMPONENT CHUÔNG THÔNG BÁO VÀO ĐÂY */}
+            {/*  GẮN COMPONENT CHUÔNG THÔNG BÁO VÀO ĐÂY */}
             <AdminNotificationBell />
 
             {/* ĐƯỜNG KẺ DỌC PHÂN CÁCH */}

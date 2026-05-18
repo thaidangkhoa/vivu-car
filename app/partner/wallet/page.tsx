@@ -17,7 +17,7 @@ export default function PartnerWalletPage() {
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
-  // 🚀 STATE LƯU THÔNG TIN NGÂN HÀNG
+  //  STATE LƯU THÔNG TIN NGÂN HÀNG
   const [bankInfo, setBankInfo] = useState({ bankName: "", bankAccount: "", bankOwnerName: "" });
   const [isEditingBank, setIsEditingBank] = useState(false);
   const [isSavingBank, setIsSavingBank] = useState(false);

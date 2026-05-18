@@ -15,7 +15,7 @@ export async function GET() {
     const cars = await prisma.car.findMany({
       where: { status: "PENDING" },
       include: {
-        // 🚀 Lấy thêm thông tin user từ mối quan hệ chúng ta vừa tạo ở Schema
+        //  Lấy thêm thông tin user từ mối quan hệ chúng ta vừa tạo ở Schema
         user: {
           select: { name: true, phone: true, email: true }
         }

@@ -31,7 +31,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
       }, { status: 400 });
     }
 
-    // 🚀 KIỂM TRA PHÂN LOẠI XE (HỆ THỐNG HAY ĐỐI TÁC)
+    //  KIỂM TRA PHÂN LOẠI XE (HỆ THỐNG HAY ĐỐI TÁC)
     const isCompanyCar = booking.car?.ownerType === "COMPANY" || !booking.car?.userId;
 
     await prisma.$transaction(async (tx) => {

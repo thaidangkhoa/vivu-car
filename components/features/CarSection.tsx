@@ -96,7 +96,7 @@ export default function CarSection({ title, subTitle, cars = [], showFilters = t
     transmission: "", 
     fuel: "",         
     tier: "",         
-    seats: ""         // 🚀 Đã khai báo biến lưu số chỗ
+    seats: ""         //  Đã khai báo biến lưu số chỗ
   });
 
   const availableLocations = useMemo(() => {
@@ -118,7 +118,7 @@ export default function CarSection({ title, subTitle, cars = [], showFilters = t
       if (activeFilters.transmission && car.transmission !== activeFilters.transmission) return false;
       if (activeFilters.fuel && car.fuel !== activeFilters.fuel) return false;
       if (activeFilters.tier && car.tier !== activeFilters.tier) return false;
-      // 🚀 XỬ LÝ LỌC SỐ CHỖ Ở ĐÂY
+      //  XỬ LÝ LỌC SỐ CHỖ Ở ĐÂY
       if (activeFilters.seats && car.seats !== parseInt(activeFilters.seats)) return false;
       return true;
     });
@@ -205,7 +205,7 @@ export default function CarSection({ title, subTitle, cars = [], showFilters = t
           {/* HÀNG 3: CÁC THÔNG SỐ KHÁC */}
           <div className="flex flex-wrap gap-4 items-center">
               
-              {/* 🚀 THÊM BỘ LỌC SỐ CHỖ Ở ĐÂY */}
+              {/*  THÊM BỘ LỌC SỐ CHỖ Ở ĐÂY */}
               <div className="flex bg-white p-1.5 rounded-[20px] shadow-sm border border-gray-100">
                   {[4, 5, 7, 9, 16].map((seat) => (
                     <button 

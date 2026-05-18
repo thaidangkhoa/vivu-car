@@ -46,7 +46,7 @@ export default function AnalyticsDashboard() {
     fetchDashboardData();
   }, []);
 
-  // 🚀 BỘ NÃO LỌC DỮ LIỆU (ĐÃ ĐỒNG BỘ 100% VỚI API)
+  //  BỘ NÃO LỌC DỮ LIỆU (ĐÃ ĐỒNG BỘ 100% VỚI API)
   const filteredStats = useMemo(() => {
     if (!data) return null;
 
@@ -91,10 +91,10 @@ export default function AnalyticsDashboard() {
         const amount = b.totalPrice || 0;
         totalGmv += amount;
 
-        // 🚀 FIX 1: Phân biệt chính xác Xe Đối Tác bằng userId
+        //  FIX 1: Phân biệt chính xác Xe Đối Tác bằng userId
         const isPartnerCar = b.car?.userId !== null && b.car?.userId !== undefined;
 
-        // 🚀 FIX 2: Tỉ lệ chuẩn 15% Hoa hồng
+        //  FIX 2: Tỉ lệ chuẩn 15% Hoa hồng
         if (!isPartnerCar) {
            companyCarRevenue += amount;
            profitSystem += amount;
@@ -142,7 +142,7 @@ export default function AnalyticsDashboard() {
     }
   }, [data, bookingsData, filterType, dateValue]);
 
-  // 🚀 HÀM XUẤT FILE EXCEL ĐÃ ĐƯỢC NÂNG CẤP TỐI ĐA
+  //  HÀM XUẤT FILE EXCEL ĐÃ ĐƯỢC NÂNG CẤP TỐI ĐA
   const handleExport = () => {
     if (!bookingsData || bookingsData.length === 0) {
       alert("Hệ thống chưa có dữ liệu để xuất báo cáo.");
@@ -185,7 +185,7 @@ export default function AnalyticsDashboard() {
       ];
     });
 
-    // 🚀 BỔ SUNG: Tính tổng doanh thu và chèn xuống cuối file Excel
+    //  BỔ SUNG: Tính tổng doanh thu và chèn xuống cuối file Excel
     const totalRevenue = validBookings.reduce((sum, b) => sum + (b.totalPrice || 0), 0);
     csvData.push(["", "", "", "", "", "", "", ""]); // Dòng trống cách điệu
     csvData.push(["", "", "", "", "", "", "TỔNG CỘNG:", totalRevenue]);
@@ -333,35 +333,60 @@ export default function AnalyticsDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm flex flex-col">
-            <h3 className="text-lg font-black text-blue-900 uppercase italic">Cơ cấu Lợi nhuận sàn</h3>
-            <div className="flex-1 min-h-[250px] w-full mt-4">
-              {filteredStats?.pieChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={filteredStats.pieChartData} cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={5} dataKey="value" stroke="none">
-                      {filteredStats.pieChartData.map((entry, index) => (<Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />))}
-                    </Pie>
-                    <Tooltip formatter={(value) => new Intl.NumberFormat('vi-VN').format(value) + 'đ'} />
-                  </PieChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="h-full flex items-center justify-center text-gray-400 font-bold italic text-sm">Chưa có dữ liệu</div>
-              )}
-              <div className="w-full mt-2 space-y-3">
-                {filteredStats?.pieChartData.map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center text-sm">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: PIE_COLORS[idx] }}></div>
-                      <span className="font-bold text-gray-600 text-[11px]">{item.name}</span>
-                    </div>
-                    <span className="font-black italic text-gray-900">{formatCurrency(item.value)}</span>
+          <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm flex flex-col h-full justify-between">
+            {/* Header đồng bộ layout với Line Chart */}
+            <div>
+              <h3 className="text-lg font-black text-blue-900 uppercase italic">Cơ cấu Lợi nhuận sàn</h3>
+              <p className="text-[10px] text-transparent font-bold uppercase tracking-widest mt-1 mb-6 select-none">
+                Cân bằng Layout
+              </p>
+            </div>
+            
+            {/* Wrapper Chart có chiều cao cố định */}
+            <div className="flex-1 flex items-center justify-center w-full">
+              <div className="h-[220px] w-full">
+                {filteredStats?.pieChartData.length > 0 ? (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie 
+                        data={filteredStats.pieChartData} 
+                        cx="50%" 
+                        cy="50%" 
+                        innerRadius={60} 
+                        outerRadius={90} 
+                        paddingAngle={5} 
+                        dataKey="value" 
+                        stroke="none"
+                      >
+                        {filteredStats.pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip formatter={(value) => new Intl.NumberFormat('vi-VN').format(value) + 'đ'} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                ) : (
+                  <div className="h-full flex items-center justify-center text-gray-400 font-bold italic text-sm">
+                    Chưa có dữ liệu
                   </div>
-                ))}
+                )}
               </div>
             </div>
+
+            {/* Chú thích (Legend) được cố định ở đáy */}
+            <div className="w-full mt-6 space-y-3 border-t border-gray-50 pt-4">
+              {filteredStats?.pieChartData.map((item, idx) => (
+                <div key={idx} className="flex justify-between items-center text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: PIE_COLORS[idx] }}></div>
+                    <span className="font-bold text-gray-600 text-[11px]">{item.name}</span>
+                  </div>
+                  <span className="font-black italic text-gray-900">{formatCurrency(item.value)}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+          </div>
 
         {/* DÒNG 2: THỐNG KÊ ĐÁNH GIÁ (REVIEWS) */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">

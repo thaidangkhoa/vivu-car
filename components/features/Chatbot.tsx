@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send, Loader2, Bot, User } from "lucide-react";
+import Link from "next/link"; // ĐÃ BỔ SUNG: Import Link của Next.js để chuyển trang
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +48,43 @@ export default function Chatbot() {
     }
   };
 
+  // ĐÃ BỔ SUNG: Hàm xử lý bóc tách nội dung tin nhắn và ID xe
+  const renderMessageContent = (msg: { role: string; content: string }) => {
+    if (msg.role === "user") {
+      return <>{msg.content}</>;
+    }
+
+    // Regex tìm thẻ [BOOK_BUTTON:id_xe]
+    const buttonRegex = /\[BOOK_BUTTON:(.+?)\]/;
+    const match = msg.content.match(buttonRegex);
+    
+    // Xóa bỏ đoạn tag khỏi text hiển thị
+    const cleanText = msg.content.replace(buttonRegex, "").trim();
+    const carId = match ? match[1] : null;
+
+    return (
+      <div className="flex flex-col gap-2">
+        <span>{cleanText}</span>
+        
+        {/* Nút bấm Đặt xe hiển thị tự động khi có carId */}
+        {carId && (
+          <div className="mt-2 pt-2 border-t border-gray-200/60 flex justify-start">
+            <Link 
+              href={`/cars/${carId}`}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-xs rounded-xl transition-all shadow-md active:scale-95"
+            >
+              <MessageSquare size={14} />
+              Tiến hành đặt chiếc xe này
+            </Link>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-sans">
+    <div className={`fixed bottom-6 z-[999] font-sans transition-all duration-300 ${isOpen ? "right-24" : "right-6"}`}>
+      
       {/* Khung chat */}
       {isOpen && (
         <div className="bg-white w-[350px] h-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100 mb-4 animate-in slide-in-from-bottom-5">
@@ -73,8 +109,9 @@ export default function Chatbot() {
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === "user" ? "bg-blue-100 text-blue-600" : "bg-orange-100 text-orange-600"}`}>
                   {msg.role === "user" ? <User size={16} /> : <Bot size={16} />}
                 </div>
+                {/* ĐÃ SỬA: Gọi hàm renderMessageContent thay vì in trực tiếp msg.content */}
                 <div className={`px-4 py-2.5 text-sm rounded-2xl max-w-[80%] whitespace-pre-wrap ${msg.role === "user" ? "bg-blue-600 text-white rounded-tr-sm" : "bg-white border border-gray-100 text-gray-700 rounded-tl-sm shadow-sm"}`}>
-                  {msg.content}
+                  {renderMessageContent(msg)}
                 </div>
               </div>
             ))}
@@ -121,6 +158,7 @@ export default function Chatbot() {
           </span>
         </button>
       )}
+      
     </div>
   );
 }

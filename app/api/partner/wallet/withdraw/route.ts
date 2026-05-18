@@ -11,7 +11,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Số tiền rút tối thiểu là 500,000đ" }, { status: 400 });
     }
 
-    // 🚀 Bọc Transaction để trừ tiền và ghi log cùng lúc
+    //  Bọc Transaction để trừ tiền và ghi log cùng lúc
     const result = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
         // 1. Kiểm tra số dư hiện tại (Lock row để tránh rút double)
         const wallet = await tx.wallet.findUnique({ where: { id: parseInt(walletId) } });

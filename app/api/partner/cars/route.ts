@@ -68,7 +68,7 @@ if (body.licensePlate) {
           description: body.description || "",
 
           // ==========================================
-          // 🚀 2. ĐÃ BỔ SUNG LƯU GIẤY TỜ VÀO DATABASE
+          //  2. ĐÃ BỔ SUNG LƯU GIẤY TỜ VÀO DATABASE
           // ==========================================
           registrationPaper: body.registrationPaper,
           inspectionCertificate: body.inspectionCertificate,

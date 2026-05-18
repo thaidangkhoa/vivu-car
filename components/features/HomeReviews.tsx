@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma";
 import { Star, Quote, User as UserIcon } from "lucide-react";
 
 export default async function HomeReviews() {
-  // 🚀 LẤY DỮ LIỆU THẬT TỪ DATABASE
+  //  LẤY DỮ LIỆU THẬT TỪ DATABASE
   let reviews = [];
   try {
     const rawReviews = await prisma.review.findMany({

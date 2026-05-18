@@ -20,7 +20,7 @@ export default function AuthModal({ onClose, onSuccess, initialMode = "login" })
   const [isLoading, setIsLoading] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
   
-  // 🚀 Thêm state quản lý giao diện báo thành công khi Quên mật khẩu
+  //  Thêm state quản lý giao diện báo thành công khi Quên mật khẩu
   const [forgotSuccess, setForgotSuccess] = useState(false);
   
   const [formData, setFormData] = useState({ 
@@ -101,7 +101,7 @@ export default function AuthModal({ onClose, onSuccess, initialMode = "login" })
           body: JSON.stringify({ phone: formData.phone })
         });
         if (res.ok) {
-          // 🚀 Thay vì dùng alert(), bật giao diện thành công đẹp mắt
+          //  Thay vì dùng alert(), bật giao diện thành công đẹp mắt
           setForgotSuccess(true); 
         } else {
           const data = await res.json();
@@ -187,7 +187,7 @@ export default function AuthModal({ onClose, onSuccess, initialMode = "login" })
 
   if (showAnimation) return <CarAnimation onComplete={handleAnimationDone} />;
 
-  // 🚀 Đã thêm tham số `hint` để hiển thị nhắc nhở nhẹ nhàng bên dưới input
+  //  Đã thêm tham số `hint` để hiển thị nhắc nhở nhẹ nhàng bên dưới input
   const renderInput = (name, icon, type, placeholder, hint = null) => (
     <div className="mb-4 relative">
       <div className={`flex items-center border-2 rounded-2xl p-4 bg-gray-50 transition-all ${
@@ -206,7 +206,7 @@ export default function AuthModal({ onClose, onSuccess, initialMode = "login" })
         <p className="text-red-500 text-[10px] font-bold italic mt-1.5 ml-2 animate-in slide-in-from-top-1">* {errors[name]}</p>
       )}
       
-      {/* 🚀 Hiển thị lời nhắc màu xanh (nếu không có lỗi và có truyền hint) */}
+      {/*  Hiển thị lời nhắc màu xanh (nếu không có lỗi và có truyền hint) */}
       {!errors[name] && hint && (
         <p className="text-blue-500 text-[10px] font-bold italic mt-1.5 ml-2">* {hint}</p>
       )}
@@ -227,7 +227,7 @@ export default function AuthModal({ onClose, onSuccess, initialMode = "login" })
             <p className="text-gray-400 text-xs mt-2 font-bold uppercase tracking-widest">ViVuCar - Nâng tầm hành trình</p>
         </div>
 
-        {/* 🚀 GIAO DIỆN BÁO THÀNH CÔNG KHI QUÊN MẬT KHẨU */}
+        {/*  GIAO DIỆN BÁO THÀNH CÔNG KHI QUÊN MẬT KHẨU */}
         {viewMode === "forgot" && forgotSuccess ? (
           <div className="text-center animate-in fade-in zoom-in duration-300 pb-4">
             <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner border border-green-100">
@@ -249,7 +249,7 @@ export default function AuthModal({ onClose, onSuccess, initialMode = "login" })
           <div>
               {viewMode === "register" && renderInput("name", <User size={20}/>, "text", "Họ và tên của bạn")}
               
-              {/* 🚀 Thêm câu nhắc nhở ở đây */}
+              {/*  Thêm câu nhắc nhở ở đây */}
               {viewMode === "register" && renderInput("email", <Mail size={20}/>, "email", "Địa chỉ Email", "Vui lòng nhập đúng Email thực để khôi phục mật khẩu sau này")}
               
               {renderInput("phone", <Phone size={20}/>, "tel", "Số điện thoại")}

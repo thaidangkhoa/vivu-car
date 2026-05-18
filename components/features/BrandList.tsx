@@ -6,7 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 
-// 🚀 BẢN ĐỒ LOGO: Khớp tên hãng từ Database với Link ảnh Logo tương ứng
+//  BẢN ĐỒ LOGO: Khớp tên hãng từ Database với Link ảnh Logo tương ứng
 const LOGO_MAP = {
   "VinFast": "https://www.carlogos.org/car-logos/vinfast-logo.png",
   "Toyota": "https://www.carlogos.org/car-logos/toyota-logo.png",
@@ -41,14 +41,14 @@ export default function BrandList({ brands = [] }) {
 
   return (
     <section className="relative py-24 bg-gradient-to-b from-[#f8fafc] to-white overflow-hidden font-sans">
-      
+
       {/* 🌟 TRANG TRÍ BACKGROUND (GLOWING EFFECTS) */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-50"></div>
       <div className="absolute -left-32 top-10 w-96 h-96 bg-blue-400/20 rounded-full mix-blend-multiply filter blur-[100px] pointer-events-none"></div>
       <div className="absolute -right-32 bottom-10 w-96 h-96 bg-purple-400/10 rounded-full mix-blend-multiply filter blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        
+
         {/* 🌟 HEADER ĐỒNG BỘ VỚI TOÀN HỆ THỐNG */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
           <div>
@@ -60,10 +60,10 @@ export default function BrandList({ brands = [] }) {
               Khám phá {brands.length} hãng xe đang sẵn sàng phục vụ
             </p>
           </div>
-          
+
           {/* NÚT THU GỌN / MỞ RỘNG MƯỢT MÀ HƠN */}
           {brands.length > 8 && (
-            <button 
+            <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-blue-600 hover:bg-blue-50 px-5 py-2.5 rounded-xl transition-colors border border-transparent hover:border-blue-100 group"
             >
@@ -79,24 +79,25 @@ export default function BrandList({ brands = [] }) {
         {/* 🌟 GRID DANH SÁCH HÃNG XE (GLASSMORPHISM) */}
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6 transition-all duration-700 ease-in-out">
           {visibleBrands.map((item) => {
-            const brandName = item.brand;         
-            const carCount = item._count.brand;   
-            const logoUrl = LOGO_MAP[brandName];    
+            const brandName = item.brand;
+            const carCount = item._count.brand;
+            const logoUrl = LOGO_MAP[brandName];
 
             return (
-              <Link 
+              <Link
                 key={brandName}
                 href={`/cars?brand=${brandName}`}
-                className="group relative flex flex-col items-center justify-center p-6 bg-white/70 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+                className="group relative flex flex-col items-center justify-center py-5 px-4 bg-white/70 backdrop-blur-md rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
               >
                 {/* Viền sáng mờ bên trong khi hover */}
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                <div className="relative w-14 h-14 flex items-center justify-center mb-4 filter grayscale opacity-70 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500 z-10">
+                {/* ĐÃ SỬA: Xóa filter, grayscale và opacity-70. Logo luôn giữ màu gốc. Vẫn giữ hiệu ứng phóng to nhẹ khi hover */}
+                <div className="relative w-14 h-14 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-500 z-10">
                   {logoUrl ? (
-                    <img 
-                      src={logoUrl} 
-                      alt={brandName} 
+                    <img
+                      src={logoUrl}
+                      alt={brandName}
                       className="max-w-full max-h-full object-contain drop-shadow-sm"
                       onError={(e) => e.currentTarget.src = `https://placehold.co/100x100?text=${brandName}`}
                     />
@@ -106,13 +107,14 @@ export default function BrandList({ brands = [] }) {
                     </div>
                   )}
                 </div>
-                
-                <span className="relative z-10 text-[10px] font-black text-gray-500 group-hover:text-blue-900 uppercase tracking-widest text-center transition-colors">
+
+                {/* ĐÃ SỬA: Chữ đậm và hiển thị màu xanh đen mặc định cho đồng bộ */}
+                <span className="relative z-10 text-[10px] font-black text-blue-900 uppercase tracking-widest text-center transition-colors">
                   {brandName}
                 </span>
-                
-                {/* Nút nhỏ hiện ra báo số lượng xe khi lướt chuột */}
-                <span className="absolute bottom-2 px-3 py-1 bg-blue-100 text-blue-700 text-[8px] font-black rounded-full uppercase tracking-widest opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 z-10">
+
+                {/* ĐÃ SỬA: Bỏ absolute và opacity-0. Chuyển thành mt-2 (cách lề trên) để luôn hiển thị ngay dưới tên hãng. Thêm hiệu ứng đổi màu nền khi hover cho đẹp mắt */}
+                <span className="relative mt-2 px-3 py-1 bg-blue-50 border border-blue-100 text-blue-700 text-[8px] font-black rounded-full uppercase tracking-widest group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 z-10">
                   {carCount} xe
                 </span>
               </Link>
@@ -123,9 +125,9 @@ export default function BrandList({ brands = [] }) {
         {/* 🌟 THÔNG BÁO SỐ LƯỢNG KHI THU GỌN */}
         {!isExpanded && brands.length > 8 && (
           <div className="mt-10 text-center animate-pulse">
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">
-                Còn {brands.length - 8} thương hiệu khác đang chờ bạn
-              </p>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">
+              Còn {brands.length - 8} thương hiệu khác đang chờ bạn
+            </p>
           </div>
         )}
       </div>

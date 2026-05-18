@@ -16,7 +16,7 @@ export default function RecentBookings({ bookings, handleUpdateBookingStatus }) 
 
   const [processingId, setProcessingId] = useState(null);
   
-  // 🚀 STATE ĐỂ QUẢN LÝ THỜI GIAN THỰC (ĐỒNG HỒ ĐẾM NGƯỢC)
+  //  STATE ĐỂ QUẢN LÝ THỜI GIAN THỰC (ĐỒNG HỒ ĐẾM NGƯỢC)
   const [currentTime, setCurrentTime] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -81,7 +81,7 @@ export default function RecentBookings({ bookings, handleUpdateBookingStatus }) 
               : (booking.totalPrice - (booking.depositAmount || 0));
 
             // ==========================================================
-            // 🚀 LOGIC TÍNH TOÁN 15 PHÚT CHỜ ĐỢI
+            //  LOGIC TÍNH TOÁN 15 PHÚT CHỜ ĐỢI
             // ==========================================================
             const startMs = new Date(booking.startDate).getTime();
             const gracePeriodMs = 15 * 60 * 1000; // 15 phút
@@ -226,7 +226,7 @@ export default function RecentBookings({ bookings, handleUpdateBookingStatus }) 
                             <CarFront size={16} /> Giao xe
                           </button>
 
-                          {/* 🚀 ĐÃ BỔ SUNG: KHÓA NÚT 15 PHÚT */}
+                          {/*  ĐÃ BỔ SUNG: KHÓA NÚT 15 PHÚT */}
                           {isNoShowEligible ? (
                             <button 
                               onClick={() => handleNoShow(booking.id)}

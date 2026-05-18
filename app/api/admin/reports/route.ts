@@ -15,7 +15,7 @@ export async function GET() {
     // 1. Lấy tất cả chuyến đi hoàn thành kèm thông tin chi tiết xe và userId chủ xe
     const bookings = await prisma.booking.findMany({
       where: { status: "COMPLETED" },
-      orderBy: { endDate: 'desc' }, // 🚀 Sắp xếp mới nhất lên đầu
+      orderBy: { endDate: 'desc' }, //  Sắp xếp mới nhất lên đầu
       include: { 
         car: { 
           select: { 
@@ -24,10 +24,10 @@ export async function GET() {
             ownerType: true, 
             location: true,
             userId: true, // Dùng cái này để xác định đối tác
-            licensePlate: true // 🚀 Thêm biển số để xuất file Excel
+            licensePlate: true //  Thêm biển số để xuất file Excel
           } 
         },
-        user: { // 🚀 Bắt buộc phải có để lấy tên và SĐT khách hàng cho file Excel
+        user: { //  Bắt buộc phải có để lấy tên và SĐT khách hàng cho file Excel
           select: {
             name: true,
             phone: true
@@ -115,7 +115,7 @@ export async function GET() {
     const averageRating = reviews.length > 0 ? (totalStars / reviews.length).toFixed(1) : "0.0";
 
     const finalData = {
-      // 🚀 BỔ SUNG BIẾN NÀY ĐỂ FRONTEND LỌC ĐƯỢC NGÀY THÁNG
+      //  BỔ SUNG BIẾN NÀY ĐỂ FRONTEND LỌC ĐƯỢC NGÀY THÁNG
       rawBookings: bookings, 
 
       kpis: {

@@ -60,7 +60,7 @@ export default function AddCarAdminPage() {
     }
   };
 
-  // 🚀 HÀM QUẢN LÝ TIỆN NGHI (TAGS)
+  //  HÀM QUẢN LÝ TIỆN NGHI (TAGS)
   const toggleAmenity = (name: string) => {
     setFormData(prev => ({
       ...prev,
@@ -70,7 +70,7 @@ export default function AddCarAdminPage() {
     }));
   };
 
-  // 🚀 HÀM QUẢN LÝ TẢI ẢNH BẰNG GIAO DIỆN KÉO THẢ
+  //  HÀM QUẢN LÝ TẢI ẢNH BẰNG GIAO DIỆN KÉO THẢ
   const handleImageUpload = async (e: any) => {
     const files = Array.from(e.target.files);
     if (formData.images.length + files.length > 5) return alert("Tối đa 5 ảnh");
@@ -106,7 +106,7 @@ export default function AddCarAdminPage() {
 
     setLoading(true);
 
-    // 🚀 BƯỚC QUAN TRỌNG: Tách 'images' ra khỏi dữ liệu gửi đi
+    //  BƯỚC QUAN TRỌNG: Tách 'images' ra khỏi dữ liệu gửi đi
     const { images, ...restFormData } = formData; 
 
     const dbPayload = {

@@ -48,7 +48,7 @@ export default async function Home() {
       where: { status: "APPROVED" },
       take: 8,
       orderBy: { id: 'desc' }, 
-      // 🚀 ĐÃ SỬA CÚ PHÁP: Bọc thêm chữ "select" để Prisma không báo lỗi
+      //  ĐÃ SỬA CÚ PHÁP: Bọc thêm chữ "select" để Prisma không báo lỗi
       include: {
         reviews: {
           select: { rating: true }
@@ -83,7 +83,7 @@ export default async function Home() {
   return (
     <main className="relative min-h-screen bg-slate-50 font-sans pb-20 overflow-x-hidden">
       
-      {/* 🚀 BACKGROUND CỐ ĐỊNH CHỨA HÌNH ẢNH ĐỘNG 2 BÊN SƯỜN */}
+      {/*  BACKGROUND CỐ ĐỊNH CHỨA HÌNH ẢNH ĐỘNG 2 BÊN SƯỜN */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <style>{`
           @keyframes floatCar { 0%, 100% { transform: translateY(0) rotate(-15deg); } 50% { transform: translateY(-40px) rotate(-12deg); } }
@@ -167,7 +167,7 @@ export default async function Home() {
         </div>
 
         {/* ========================================================= */}
-        {/* 🚀 PHẦN MỚI: ĐĂNG KÝ HỢP TÁC CHỦ XE (PARTNER CTA) */}
+        {/*   ĐĂNG KÝ HỢP TÁC CHỦ XE (PARTNER CTA) */}
         {/* ========================================================= */}
         <div className="relative bg-blue-900 rounded-[50px] p-10 lg:p-16 overflow-hidden shadow-2xl z-10">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800 rounded-full blur-[100px] opacity-50 -mr-40 -mt-40"></div>

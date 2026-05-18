@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Edit, Trash2, Eye, EyeOff, Loader2, FileText } from "lucide-react";
 
-// 🚀 BỔ SUNG: Nhận thêm currentStatus và carName từ bảng truyền xuống
+//  BỔ SUNG: Nhận thêm currentStatus và carName từ bảng truyền xuống
 export default function ActionButtons({ 
   carId, 
   currentStatus = "", 
@@ -21,7 +21,7 @@ export default function ActionButtons({
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleDelete = async () => {
-    // 🚀 BỔ SUNG: Nâng cấp cảnh báo chống xóa nhầm
+    //  BỔ SUNG: Nâng cấp cảnh báo chống xóa nhầm
     const confirmDelete = window.confirm(`CẢNH BÁO TỪ HỆ THỐNG:\n\nBạn đang chuẩn bị XÓA VĨNH VIỄN chiếc xe "${carName}" (ID: #${carId}).\nHành động này sẽ làm hỏng các báo cáo doanh thu cũ có liên quan đến xe này.\n\n👉 Khuyên dùng: Hãy sử dụng nút "Tạm Ẩn" (Hình con mắt gạch chéo) để an toàn dữ liệu.\n\nBạn vẫn kiên quyết muốn XÓA CỨNG?`);
     if (!confirmDelete) return;
 
@@ -43,7 +43,7 @@ export default function ActionButtons({
     }
   };
 
-  // 🚀 TÍNH NĂNG MỚI: HÀM ẨN / MỞ XE (SOFT DELETE)
+  //  TÍNH NĂNG MỚI: HÀM ẨN / MỞ XE (SOFT DELETE)
   const handleToggleStatus = async () => {
     const newStatus = currentStatus === 'HIDDEN' ? 'APPROVED' : 'HIDDEN';
     const actionText = newStatus === 'HIDDEN' ? 'TẠM ẨN' : 'MỞ LẠI HOẠT ĐỘNG';
@@ -84,7 +84,7 @@ export default function ActionButtons({
         <Edit size={18} />
       </Link>
 
-      {/* 🚀 NÚT ẨN / MỞ (Chỉ hiện khi xe đang ở trạng thái Hoạt động hoặc Đã ẩn) */}
+      {/*  NÚT ẨN / MỞ (Chỉ hiện khi xe đang ở trạng thái Hoạt động hoặc Đã ẩn) */}
       {(currentStatus === 'APPROVED' || currentStatus === 'HIDDEN') && (
         <button 
           onClick={handleToggleStatus}

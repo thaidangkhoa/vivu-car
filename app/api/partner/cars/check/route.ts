@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 export async function POST(request: Request) {
   try {
-    // 🚀 Lấy đúng biến licensePlate mà Frontend gửi lên
+    //  Lấy đúng biến licensePlate mà Frontend gửi lên
     const { licensePlate } = await request.json();
 
     if (!licensePlate) {

@@ -66,7 +66,7 @@ export async function POST(req: Request) {
       else if (rawText.includes("sang trọng") || rawText.includes("xe cưới")) buildWhere.tier = "Luxury";
 
       // ==========================================================
-      // 🚀 4. QUÉT NHIÊN LIỆU & HỘP SỐ (BẮT CÂU PHỦ ĐỊNH THÔNG MINH)
+      //  4. QUÉT NHIÊN LIỆU & HỘP SỐ (BẮT CÂU PHỦ ĐỊNH THÔNG MINH)
       // ==========================================================
       const isNotEV = rawText.match(/không\s*(thích|muốn|cần|lấy|thuê|chạy|đi|chọn|khoái).*(xe điện|ev)/);
       if (isNotEV) {
@@ -111,7 +111,7 @@ export async function POST(req: Request) {
     });
 
     // =====================================================================
-    // 🚀 TẠO CHUỖI NHẬN DIỆN CHO BOT HIỂU ĐANG LỌC GÌ
+    //  TẠO CHUỖI NHẬN DIỆN CHO BOT HIỂU ĐANG LỌC GÌ
     // =====================================================================
     const activeFilters = [];
     if (buildWhere.location) activeFilters.push(`Khu vực: ${buildWhere.location}`);
@@ -136,6 +136,7 @@ export async function POST(req: Request) {
       take: 30, 
       orderBy: orderByConfig,
       select: { 
+        id: true, // <--- ĐÃ BỔ SUNG: Bắt buộc lấy ID để phục vụ nút đặt xe
         name: true, brand: true, category: true, seats: true, location: true, 
         priceOriginal: true, priceDiscount: true, transmission: true, fuel: true,
         amenities: true, deliveryFee: true, requirements: true, rules: true
@@ -148,6 +149,7 @@ export async function POST(req: Request) {
       const currentPrice = c.priceDiscount > 0 ? c.priceDiscount : c.priceOriginal;
       
       return `📌 [${c.brand} ${c.name} - ${c.category}]
+- Mã ID xe: ${c.id}
 - Thông số: ${c.seats} chỗ, ${trans}, Máy ${fuel}.
 - Vị trí: ${c.location}.
 - Giá thuê: ${currentPrice} VNĐ/ngày.
@@ -172,6 +174,8 @@ export async function POST(req: Request) {
          Bạn BẮT BUỘC phải báo hết xe dựa trên bộ lọc đã nhận diện. KHÔNG TỰ BỊA RA XE KHÁC NẰM NGOÀI DANH SÁCH.
       2. THẤU HIỂU KHÁCH HÀNG ĐỔI Ý: Nếu khách nói không thích một loại xe nào đó (ví dụ không thích xe điện), hãy nói: "Dạ vâng, em đã loại bỏ xe điện ra khỏi danh sách. Đây là các mẫu xe chạy xăng/dầu cực kỳ phù hợp cho nhà mình ạ...".
       3. ĐỐI CHIẾU NGÂN SÁCH: Nếu khách có yêu cầu khoảng giá (VD: 1-2 triệu), tự động nhìn "Giá thuê" để loại bỏ xe đắt tiền.
+      4. KÍCH HOẠT NÚT ĐẶT XE (QUAN TRỌNG): Nếu khách hàng chốt, đồng ý thuê, hoặc yêu cầu đặt một chiếc xe cụ thể trong danh sách, hãy tư vấn nhiệt tình và BẮT BUỘC phải chèn thêm chuỗi [BOOK_BUTTON:Mã_ID_xe] ở ngay dòng cuối cùng của câu trả lời (thay Mã_ID_xe bằng ID thực tế của chiếc xe đó). 
+         Ví dụ: "Dạ vâng, em đã kiểm tra và thấy chiếc Mazda 3 này rất phù hợp. Anh/chị bấm vào nút bên dưới để tiến hành thanh toán giữ xe nhé! [BOOK_BUTTON:id_cua_chiec_mazda]"
     `;
     
     const recentMessages = messages.slice(-6).map((msg: any) => ({

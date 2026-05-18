@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 
-// 🚀 HÀM POST XỬ LÝ DUYỆT
+//  HÀM POST XỬ LÝ DUYỆT
 export async function POST(request: Request, context: { params: { id: string } }) {
   try {
     // 1. Kiểm tra quyền Admin

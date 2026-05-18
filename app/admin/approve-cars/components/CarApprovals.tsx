@@ -105,7 +105,7 @@ export default function CarApprovals() {
       const res = await fetch(`/api/admin/cars/${carId}/approve`, { 
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        // 🚀 Gửi thêm lệnh update cờ ký quỹ
+        //  Gửi thêm lệnh update cờ ký quỹ
         body: JSON.stringify({ isDepositPaid: true }) 
       });
       const data = await res.json();
@@ -177,7 +177,7 @@ export default function CarApprovals() {
             return (
               <div key={car.id} className="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-xl hover:border-blue-200 transition-all relative">
                 
-                {/* 🚀 TEM HIỂN THỊ TRẠNG THÁI KÝ QUỸ LÊN GÓC THẺ XE */}
+                {/*  TEM HIỂN THỊ TRẠNG THÁI KÝ QUỸ LÊN GÓC THẺ XE */}
                 {car.isDepositPaid ? (
                    <div className="absolute top-4 left-4 z-10 bg-green-500 text-white text-[9px] font-black uppercase px-3 py-1.5 rounded-lg shadow-md italic flex items-center gap-1">
                      <BadgeCheck size={12}/> Đã đóng quỹ
@@ -252,7 +252,7 @@ export default function CarApprovals() {
                   </h2>
                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 flex items-center gap-2">
                     Mã hệ thống: #{selectedCar.id} 
-                    {/* 🚀 HIỂN THỊ CỜ KÝ QUỸ & HỢP ĐỒNG */}
+                    {/*  HIỂN THỊ CỜ KÝ QUỸ & HỢP ĐỒNG */}
                     | Ký quỹ: 
                     {selectedCar.isDepositPaid ? (
                       <span className="text-green-500 font-black">Đã đóng</span>
@@ -446,7 +446,7 @@ export default function CarApprovals() {
                   {isProcessing ? "Đang xử lý..." : "Từ chối hồ sơ"}
                 </button>
                 
-                {/* 🚀 NÚT DUYỆT THÔNG MINH */}
+                {/*  NÚT DUYỆT THÔNG MINH */}
                 {selectedCar.isDepositPaid ? (
                    <button disabled={isProcessing} onClick={() => handleApproveCar(selectedCar.id, selectedCar.user?.name || selectedCar.ownerName, true)} className="px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-200 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 italic disabled:opacity-50 active:scale-95">
                      <CheckCircle2 size={16} /> Phê duyệt lên sàn

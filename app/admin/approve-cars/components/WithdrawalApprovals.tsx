@@ -15,7 +15,7 @@ export default function WithdrawalApprovals() {
   const [filter, setFilter] = useState("PENDING");
   const [loading, setLoading] = useState(true);
 
-  // 🚀 STATE MỚI: Quản lý Modal từ chối
+  //  STATE MỚI: Quản lý Modal từ chối
   const [rejectModal, setRejectModal] = useState({
     isOpen: false,
     txId: null,
@@ -35,7 +35,7 @@ export default function WithdrawalApprovals() {
     finally { setLoading(false); }
   };
 
-  // 🚀 CẬP NHẬT: Hàm xử lý nhận thêm tham số reason (description)
+  //  CẬP NHẬT: Hàm xử lý nhận thêm tham số reason (description)
   const handleAction = async (id, newStatus, reason = "") => {
     if (newStatus === 'COMPLETED') {
       if (!confirm(`XÁC NHẬN: Bạn ĐÃ CHUYỂN KHOẢN và DUYỆT yêu cầu rút tiền này?`)) return;
@@ -132,7 +132,7 @@ export default function WithdrawalApprovals() {
                           <div className="flex gap-2 mt-1">
                             <button onClick={() => handleAction(tx.id, 'COMPLETED')} className="bg-emerald-600 text-white p-2.5 rounded-xl hover:bg-emerald-700 shadow-lg transition-all active:scale-95" title="Duyệt - Đã chuyển tiền"><CheckCircle size={18} /></button>
                             
-                            {/* 🚀 CẬP NHẬT: Bấm nút này sẽ mở Modal thay vì chạy hàm ngay */}
+                            {/*  CẬP NHẬT: Bấm nút này sẽ mở Modal thay vì chạy hàm ngay */}
                             <button onClick={() => setRejectModal({ isOpen: true, txId: tx.id, reason: "", isSubmitting: false })} className="bg-red-50 text-red-500 p-2.5 rounded-xl hover:bg-red-500 hover:text-white transition-all active:scale-95" title="Từ chối - Hoàn tiền"><XCircle size={18} /></button>
                           </div>
                         </div>
@@ -142,7 +142,7 @@ export default function WithdrawalApprovals() {
                         <div className="flex flex-col items-center gap-2">
                           <span className="px-3 py-1 rounded-lg text-[9px] font-black uppercase italic bg-red-50 text-red-600 inline-flex items-center gap-1 border border-red-100"><AlertCircle size={12}/> Bị từ chối</span>
                           
-                          {/* 🚀 MỚI: Hiện lý do từ chối nếu có */}
+                          {/*  MỚI: Hiện lý do từ chối nếu có */}
                           {tx.description && (
                             <div className="mt-1 bg-red-50 border border-red-100 text-red-600 text-[9px] p-2 rounded-lg font-bold italic max-w-[200px] break-words text-left w-full">
                               Lý do: {tx.description}
@@ -159,7 +159,7 @@ export default function WithdrawalApprovals() {
         </div>
       </div>
 
-      {/* 🚀 MODAL HỎI LÝ DO TỪ CHỐI */}
+      {/*  MODAL HỎI LÝ DO TỪ CHỐI */}
       {rejectModal.isOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-blue-900/40 backdrop-blur-sm" onClick={() => !rejectModal.isSubmitting && setRejectModal({ isOpen: false, txId: null, reason: "", isSubmitting: false })}></div>

@@ -10,7 +10,7 @@ export default function UserNotificationBell() {
   const [data, setData] = useState({ pendingBookings: [], upcomingTrips: [], resolvedDisputes: [], total: 0 });
   const [isOpen, setIsOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState(Date.now());
-  const [clickedIds, setClickedIds] = useState([]); // 🚀 BỘ NHỚ LƯU TRỮ CÁC THÔNG BÁO ĐÃ CLICK
+  const [clickedIds, setClickedIds] = useState([]); //  BỘ NHỚ LƯU TRỮ CÁC THÔNG BÁO ĐÃ CLICK
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Khởi tạo đọc danh sách đã click từ LocalStorage
@@ -61,7 +61,7 @@ export default function UserNotificationBell() {
     return diff > 0 ? diff : 0;
   };
 
-  // 🚀 HÀM MỚI: XỬ LÝ KHI CLICK VÀO THÔNG BÁO
+  //  HÀM MỚI: XỬ LÝ KHI CLICK VÀO THÔNG BÁO
   const handleNotificationClick = (uniqueId) => {
     setIsOpen(false);
     
@@ -73,7 +73,7 @@ export default function UserNotificationBell() {
     }
   };
 
-  // 🚀 TÍNH TOÁN LẠI SỐ LƯỢNG THÔNG BÁO THỰC TẾ CHƯA ĐỌC
+  //  TÍNH TOÁN LẠI SỐ LƯỢNG THÔNG BÁO THỰC TẾ CHƯA ĐỌC
   const unreadCount = [
     ...data.pendingBookings.map(b => `pending_${b.id}`),
     ...data.upcomingTrips.map(t => `upcoming_${t.id}`),

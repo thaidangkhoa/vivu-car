@@ -25,7 +25,7 @@ export default function BookingDetailPage() {
   
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   
-  // 🚀 STATE QUẢN LÝ POPUP BÁO CÁO SỰ CỐ
+  //  STATE QUẢN LÝ POPUP BÁO CÁO SỰ CỐ
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [reportReason, setReportReason] = useState("");
   const [isReporting, setIsReporting] = useState(false);
@@ -52,7 +52,7 @@ export default function BookingDetailPage() {
     fetchBookingDetail();
   }, [bookingId]);
 
-  // 🚀 HÀM XỬ LÝ GỬI BÁO CÁO SỰ CỐ LÊN SERVER
+  //  HÀM XỬ LÝ GỬI BÁO CÁO SỰ CỐ LÊN SERVER
   const handleReportIssue = async () => {
     if (!reportReason) return alert("Vui lòng chọn hoặc nhập lý do sự cố!");
     setIsReporting(true);
@@ -133,7 +133,7 @@ export default function BookingDetailPage() {
             Chi tiết chuyến đi <span className="text-blue-600">#{booking.id}</span>
           </h1>
           
-          {/* 🚀 1. ĐÃ SỬA: SỬ DỤNG HÀM getBookingState ĐỂ TỰ ĐỘNG LẤY MÀU VÀ TEXT */}
+          {/*  1. ĐÃ SỬA: SỬ DỤNG HÀM getBookingState ĐỂ TỰ ĐỘNG LẤY MÀU VÀ TEXT */}
           {(() => {
             const state = getBookingState(booking);
             return (
@@ -144,7 +144,7 @@ export default function BookingDetailPage() {
           })()}
         </div>
 
-        {/* 🚀 2. THÊM MỚI: BANNER THÔNG BÁO HOÀN TIỀN NẰM NGAY DƯỚI TIÊU ĐỀ */}
+        {/*  2. THÊM MỚI: BANNER THÔNG BÁO HOÀN TIỀN NẰM NGAY DƯỚI TIÊU ĐỀ */}
         {booking.status === "CANCELLED" && booking.paymentStatus === "REFUNDED" && (
           <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl mb-6 animate-in fade-in slide-in-from-top-4">
             <div className="flex items-start gap-3">
@@ -174,7 +174,7 @@ export default function BookingDetailPage() {
           
           <div className="md:col-span-2 space-y-6">
             
-            {/* 🚀 BẢNG CẢNH BÁO NẾU ĐƠN HÀNG ĐANG BỊ TRANH CHẤP */}
+            {/*  BẢNG CẢNH BÁO NẾU ĐƠN HÀNG ĐANG BỊ TRANH CHẤP */}
             {booking.status === "DISPUTED" && (
               <div className="bg-red-50 p-6 rounded-[32px] border-2 border-red-200 animate-in fade-in slide-in-from-top-4">
                  <div className="flex items-center gap-3 mb-2">
@@ -403,7 +403,7 @@ export default function BookingDetailPage() {
               </Link>
             )}
 
-            {/* 🚀 NÚT BÁO CÁO SỰ CỐ KHẨN CẤP CHỈ HIỆN KHI ĐÃ CỌC (CONFIRMED) */}
+            {/*  NÚT BÁO CÁO SỰ CỐ KHẨN CẤP CHỈ HIỆN KHI ĐÃ CỌC (CONFIRMED) */}
             {booking.status === "CONFIRMED" && (
               <button 
                 onClick={() => setIsReportOpen(true)} 
@@ -425,7 +425,7 @@ export default function BookingDetailPage() {
         </div>
       </div>
 
-      {/* 🚀 MODAL BÁO CÁO SỰ CỐ KHẨN CẤP */}
+      {/*  MODAL BÁO CÁO SỰ CỐ KHẨN CẤP */}
       {isReportOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative animate-in zoom-in-95 duration-200">

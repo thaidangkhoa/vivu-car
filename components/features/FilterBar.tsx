@@ -20,7 +20,7 @@ const FILTERS = [
   { id: 'trans_auto', label: 'Số tự động', icon: Settings },
   { id: 'trans_manual', label: 'Số sàn', icon: Settings },
 
-  // Nhóm Nhiên liệu - 🚀 ĐÃ TÁCH RIÊNG HYBRID
+  // Nhóm Nhiên liệu -  ĐÃ TÁCH RIÊNG HYBRID
   { id: 'fuel_gas', label: 'Máy Xăng', icon: Fuel },
   { id: 'fuel_diesel', label: 'Máy Dầu', icon: Fuel },
   { id: 'fuel_ev', label: 'Xe Điện', icon: Zap, activeColor: 'text-blue-400' },

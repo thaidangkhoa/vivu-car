@@ -5,7 +5,7 @@ import { FileText } from "lucide-react";
 
 export default function ContractPolicyPage() {
   return (
-    // 🚀 Giữ nguyên font-sans để đồng bộ phông chữ
+    //  Giữ nguyên font-sans để đồng bộ phông chữ
     <main className="min-h-screen bg-gray-50 pb-20 pt-28 font-sans text-gray-800 flex flex-col items-center">
       <div className="container mx-auto px-4 max-w-4xl">
         

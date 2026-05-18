@@ -14,7 +14,7 @@ export default function CarCard({ car }) {
   }, []);
 
   // ========================================================
-  // 🚀 XỬ LÝ DỮ LIỆU THẬT TỪ DATABASE
+  //  XỬ LÝ DỮ LIỆU THẬT TỪ DATABASE
   // ========================================================
   
   // 1. Lấy số chuyến đi thật (Nếu Backend chưa include thì mặc định là 0)
@@ -72,7 +72,7 @@ export default function CarCard({ car }) {
           </h3>
           
           <div className="flex items-center gap-3 mt-2.5">
-            {/* 🚀 HIỂN THỊ ĐÁNH GIÁ THẬT */}
+            {/*  HIỂN THỊ ĐÁNH GIÁ THẬT */}
             <div className="flex items-center gap-1 bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded-md border border-yellow-100">
               <Star size={12} className="fill-yellow-500 text-yellow-500" />
               <span className="text-[11px] font-black">{realRating > 0 ? realRating : "Mới"}</span>
@@ -80,7 +80,7 @@ export default function CarCard({ car }) {
             
             <div className="w-1 h-1 rounded-full bg-gray-300"></div>
             
-            {/* 🚀 HIỂN THỊ SỐ CHUYẾN ĐI THẬT */}
+            {/*  HIỂN THỊ SỐ CHUYẾN ĐI THẬT */}
             <div className="flex items-center gap-1 text-green-600 font-bold">
               <Route size={12} />
               <span className="text-[11px] uppercase tracking-tighter">

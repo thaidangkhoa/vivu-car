@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { MapPin, Navigation } from "lucide-react";
 
-// 🚀 Đã đưa thẳng danh sách 12 tỉnh thành vào đây, thay thế Base64 bằng link ảnh thật
+//  Đã đưa thẳng danh sách 12 tỉnh thành vào đây, thay thế Base64 bằng link ảnh thật
 // (Đã xóa cột carCount tĩnh vì bên dưới bạn đã dùng realCount từ Database)
 const LOCATIONS_UI = [
   { id: 1, name: "Hà Nội", value: "HaNoi", image: "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&q=80&w=400" },

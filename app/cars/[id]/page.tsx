@@ -132,7 +132,7 @@ export default function CarDetailPage() {
   };
 
   // ===============================================================
-  // 🚀 LOGIC TÍNH TIỀN: CÓ THÊM DÒNG GIẢI THÍCH (EXPLANATION)
+  //  LOGIC TÍNH TIỀN: CÓ THÊM DÒNG GIẢI THÍCH (EXPLANATION)
   // ===============================================================
   const billing = useMemo(() => {
     if (!car || !startDate || !endDate || isOverlapped) {
@@ -296,7 +296,7 @@ export default function CarDetailPage() {
       <input type="radio" name="delivery" className="hidden" disabled={!Number(car.deliveryFee)} checked={isDelivery} onChange={() => setIsDelivery(true)} />
       {isDelivery && <CheckCircle2 className="text-blue-600 w-5 h-5" />}
     </div>
-    {/* 🚀 ĐÃ CẬP NHẬT CHỖ NÀY: Thay đổi text và thêm cảnh báo bán kính */}
+    {/*  ĐÃ CẬP NHẬT CHỖ NÀY: Thay đổi text và thêm cảnh báo bán kính */}
     <p className="text-sm font-medium text-gray-600">Nhận xe tại nhà (Nội thành {car.location})</p>
     <span className="text-[10px] font-black text-orange-600 uppercase mt-1">
       {Number(car.deliveryFee) ? `Phí cơ bản: ${formatCurrency(car.deliveryFee)}` : "Không hỗ trợ giao xe"}
@@ -397,7 +397,7 @@ export default function CarDetailPage() {
 
               <div className={`p-6 rounded-[32px] space-y-3 mb-6 text-white transition-all ${isOverlapped ? 'bg-gray-400 shadow-inner' : 'bg-blue-900 shadow-xl shadow-blue-100'}`}>
                 
-                {/* 🚀 ĐÃ CẬP NHẬT: THÊM DÒNG EXPLANATION NẰM NGAY DƯỚI GIÁ THUÊ */}
+                {/*  ĐÃ CẬP NHẬT: THÊM DÒNG EXPLANATION NẰM NGAY DƯỚI GIÁ THUÊ */}
                 <div className="border-b border-white/20 pb-3 mb-3">
                   <div className="flex justify-between items-center text-[10px] opacity-90 font-black uppercase tracking-widest mb-1">
                     <span>Giá thuê ({billing.displayTime})</span>

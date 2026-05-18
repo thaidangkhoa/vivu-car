@@ -13,11 +13,11 @@ import {
 } from "lucide-react";
 import AuthModal from "@/components/features/AuthModal"; 
 
-// 🚀 IMPORT COMPONENT CHUÔNG THÔNG BÁO DÀNH CHO USER
+//  IMPORT COMPONENT CHUÔNG THÔNG BÁO DÀNH CHO USER
 import UserNotificationBell from "@/components/features/UserNotificationBell";
 
 export default function Navbar() {
-  // 🚀 1. KHAI BÁO TẤT CẢ HOOKS Ở ĐẦY TIÊN (Rules of Hooks)
+  //  1. KHAI BÁO TẤT CẢ HOOKS Ở ĐẦY TIÊN (Rules of Hooks)
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -42,13 +42,13 @@ export default function Navbar() {
     }
   }, [searchParams]);
 
-  // 🚀 2. ĐẶT EARLY RETURN Ở ĐÂY (SAU KHI ĐÃ GỌI HẾT HOOKS)
+  //  2. ĐẶT EARLY RETURN Ở ĐÂY (SAU KHI ĐÃ GỌI HẾT HOOKS)
   // Nếu đang ở đường dẫn /admin... thì ẩn Navbar này đi
   if (pathname?.startsWith("/admin")) {
     return null; 
   }
 
-  // 🚀 3. CÁC HÀM XỬ LÝ SỰ KIỆN
+  //  3. CÁC HÀM XỬ LÝ SỰ KIỆN
   const handleLogout = async () => {
     setShowDropdown(false);
     // Xóa nốt localStorage nếu lỡ còn sót rác cũ
@@ -63,7 +63,7 @@ export default function Navbar() {
 
   if (!isMounted) return <nav className="h-16 bg-white border-b shadow-sm" />;
 
-  // 🚀 4. KẾT QUẢ RENDER (JSX)
+  //  4. KẾT QUẢ RENDER (JSX)
   return (
     <>
       <nav className="print:hidden bg-white/90 border-b sticky top-0 z-[100] shadow-sm backdrop-blur-md">
@@ -116,7 +116,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {status === "authenticated" && user ? (
               <>
-                {/* 🚀 GẮN COMPONENT CHUÔNG VÀO NGAY TRƯỚC AVATAR CỦA USER */}
+                {/*  GẮN COMPONENT CHUÔNG VÀO NGAY TRƯỚC AVATAR CỦA USER */}
                 <UserNotificationBell />
 
                 <div className="relative">

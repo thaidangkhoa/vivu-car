@@ -87,7 +87,7 @@ export default function PaymentSelectionPage({ params }: { params: any }) {
     );
   }
 
-  // 🚀 BẮT ĐẦU: CHẶN THANH TOÁN NẾU ĐƠN ĐÃ BỊ HỦY DO QUÁ HẠN 20 PHÚT
+  //  BẮT ĐẦU: CHẶN THANH TOÁN NẾU ĐƠN ĐÃ BỊ HỦY DO QUÁ HẠN 20 PHÚT
   if (booking?.status === "CANCELLED") {
     return (
       <div className="min-h-screen bg-[#f8fafc] flex flex-col items-center justify-center pt-10 font-sans">
@@ -105,7 +105,7 @@ export default function PaymentSelectionPage({ params }: { params: any }) {
       </div>
     );
   }
-  // 🚀 KẾT THÚC CHẶN
+  //  KẾT THÚC CHẶN
 
   return (
     <div className="min-h-screen bg-[#f8fafc] py-20 px-4 font-sans">

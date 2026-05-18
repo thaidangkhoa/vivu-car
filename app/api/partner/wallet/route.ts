@@ -75,7 +75,7 @@ export async function POST(request: Request) {
     const [updatedWallet, newTransaction] = await prisma.$transaction([
       prisma.wallet.update({
         where: { id: wallet.id },
-        data: { balance: { decrement: withdrawAmount } } // 🚀 Trừ tiền ngay lập tức
+        data: { balance: { decrement: withdrawAmount } } //  Trừ tiền ngay lập tức
       }),
       prisma.transaction.create({
         data: {
@@ -99,7 +99,7 @@ export async function PATCH(request: Request) {
     if (!session || !session.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const body = await request.json();
-    // 🚀 SỬA Ở ĐÂY: Dùng đúng tên cột trong Database của bạn
+    //  SỬA Ở ĐÂY: Dùng đúng tên cột trong Database của bạn
     const { bankName, bankAccount, bankOwnerName } = body; 
     const userId = Number(session.user.id);
 

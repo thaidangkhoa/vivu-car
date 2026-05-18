@@ -27,7 +27,7 @@ export default function PartnerEditCarPage({ params }) {
     seats: 4, address: "", deliveryFee: 0, description: "",
     amenities: "", rules: "", requirements: "",
     licensePlate: "", ownerCCCD: "",
-    images: [], // 🚀 BỔ SUNG STATE LƯU MẢNG ẢNH HIỂN THỊ
+    images: [], //  BỔ SUNG STATE LƯU MẢNG ẢNH HIỂN THỊ
     registrationPaper: "", inspectionCertificate: "", insurancePaper: ""
   });
 
@@ -44,7 +44,7 @@ export default function PartnerEditCarPage({ params }) {
           let safeAmenities = [];
           try { safeAmenities = Array.isArray(data.amenities) ? data.amenities : JSON.parse(data.amenities || "[]"); } catch(e) {}
 
-          // 🚀 GỘP ẢNH CHÍNH VÀ ẢNH PHỤ VÀO 1 MẢNG ĐỂ HIỂN THỊ
+          //  GỘP ẢNH CHÍNH VÀ ẢNH PHỤ VÀO 1 MẢNG ĐỂ HIỂN THỊ
           const loadedImages = [data.image, ...safeGallery].filter(Boolean);
 
           setFormData({
@@ -76,7 +76,7 @@ export default function PartnerEditCarPage({ params }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // 🚀 HÀM UPLOAD NHIỀU ẢNH XE (GIỐNG TRANG ĐĂNG KÝ)
+  //  HÀM UPLOAD NHIỀU ẢNH XE (GIỐNG TRANG ĐĂNG KÝ)
   const handleImageUpload = async (e) => {
     const files = Array.from(e.target.files);
     if (formData.images.length + files.length > 5) return alert("Tối đa 5 ảnh hiển thị");
@@ -216,7 +216,7 @@ export default function PartnerEditCarPage({ params }) {
                 <textarea rows={3} name="description" value={formData.description} onChange={handleChange} className="w-full mt-1 p-3 rounded-xl border bg-white" />
               </div>
 
-              {/* 🚀 GIAO DIỆN UPLOAD ẢNH HIỂN THỊ NHƯ BÊN TRANG ĐĂNG KÝ */}
+              {/*  GIAO DIỆN UPLOAD ẢNH HIỂN THỊ NHƯ BÊN TRANG ĐĂNG KÝ */}
               <div className="col-span-full border-t border-gray-200 pt-6 mt-2">
                 <label className="text-xs font-bold text-gray-700 mb-3 block">Hình ảnh hiển thị (Tối đa 5 ảnh) <span className="text-red-500">*</span></label>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">

@@ -21,6 +21,8 @@ model User {
   wallet    Wallet?    //  Liên kết User với Ví của họ (Nếu họ là PARTNER)
   cars      Car[]
   reviews   Review[]   //  Danh sách các đánh giá khách hàng đã viết
+  resetPasswordToken   String?   @unique
+  resetPasswordExpires DateTime?
 }
 
 model Car {

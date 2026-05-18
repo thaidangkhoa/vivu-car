@@ -25,7 +25,7 @@ export default function EditProfileModal({ isOpen, onClose, user, onUpdate }) {
 
   if (!isOpen) return null;
 
-  // 🚀 CẬP NHẬT THÔNG TIN VÀO DATABASE
+  //  CẬP NHẬT THÔNG TIN VÀO DATABASE
   const handleSaveInfo = async () => {
     if (!infoData.name || !infoData.phone || !infoData.email) 
       return alert("Vui lòng điền đầy đủ thông tin!");

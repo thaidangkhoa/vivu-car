@@ -95,7 +95,7 @@ export default function AdminPage() {
     }
   };
 
-  // 🚀 HÀM MỚI: XỬ LÝ TRANH CHẤP
+  //  HÀM MỚI: XỬ LÝ TRANH CHẤP
   const handleResolveDispute = async (id, actionType) => {
     if (actionType === "REFUND") {
       if (!confirm("CẢNH BÁO: Hành động này sẽ:\n1. Hủy đơn hàng.\n2. Đánh dấu đã hoàn tiền cọc cho khách.\n\nBạn có chắc chắn muốn thực hiện?")) return;
@@ -121,7 +121,7 @@ export default function AdminPage() {
     }
   };
 
-  // 🚀 Thêm tab DISPUTED vào bộ lọc
+  //  Thêm tab DISPUTED vào bộ lọc
   const filterTabs = [
     { key: "ALL", label: "Tất cả" },
     { key: "DISPUTED", label: "Tranh chấp" },
@@ -159,7 +159,7 @@ export default function AdminPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
           <div>
             <h1 className="text-4xl font-black text-blue-900 uppercase italic tracking-tighter flex items-center gap-3">
-              <Package size={36} className="text-blue-600" /> Quản trị đơn hàng
+              <Package size={36} className="text-blue-600" /> Quản lý đơn hàng
             </h1>
             <p className="text-[10px] text-gray-400 font-bold uppercase mt-2 ml-12 tracking-[0.2em]">Hệ thống điều hành ViVuCar</p>
           </div>
@@ -308,7 +308,7 @@ export default function AdminPage() {
                     <td className="p-6 align-top">
                       {booking.status === "CANCELLED" ? (
                         booking.paymentStatus === "REFUNDED" ? (
-                          // 🚀 ĐÃ HOÀN TIỀN
+                          //  ĐÃ HOÀN TIỀN
                           <div className="bg-gray-100 p-3 rounded-xl border border-gray-300 w-fit">
                             <p className="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-1 flex items-center gap-1">
                               <CheckCircle size={10}/> Đã Hủy & Hoàn Tiền
@@ -325,7 +325,7 @@ export default function AdminPage() {
                           </div>
                         ) : (
                           <div className="bg-red-50 p-3 rounded-xl border border-red-100 w-fit">
-                            <p className="text-[9px] font-black text-red-500 uppercase tracking-widest mb-1">Đã hủy quá hạn</p>
+                            <p className="text-[9px] font-black text-red-500 uppercase tracking-widest mb-1">Quá hạn thanh toán</p>
                             <p className="font-black text-red-400 text-sm italic tracking-tighter line-through opacity-80">Tổng: {formatCurrency(booking.totalPrice)}</p>
                           </div>
                         )

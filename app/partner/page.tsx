@@ -29,7 +29,7 @@ export default function PartnerRegisterPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   
-  // 🚀 STATE ĐỂ LƯU LỖI TRÙNG BIỂN SỐ VÀ HỢP ĐỒNG KÝ QUỸ
+  //  STATE ĐỂ LƯU LỖI TRÙNG BIỂN SỐ VÀ HỢP ĐỒNG KÝ QUỸ
   const [licensePlateError, setLicensePlateError] = useState("");
   const [isAgreed, setIsAgreed] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
@@ -440,7 +440,7 @@ export default function PartnerRegisterPage() {
                 </div>
             </div>
 
-            {/* 🚀 GIAO DIỆN UPLOAD GIẤY TỜ BẢO MẬT */}
+            {/*  GIAO DIỆN UPLOAD GIẤY TỜ BẢO MẬT */}
             <div className="bg-red-50/50 p-6 rounded-[24px] border border-red-100 mb-8">
               <div className="mb-6">
                 <h3 className="text-lg font-black text-red-700 uppercase italic flex items-center gap-2">
@@ -514,7 +514,7 @@ export default function PartnerRegisterPage() {
               </div>
             </div>
 
-            {/* 🚀 KHỐI XÁC NHẬN HỢP ĐỒNG ĐIỆN TỬ */}
+            {/*  KHỐI XÁC NHẬN HỢP ĐỒNG ĐIỆN TỬ */}
             <div className="mt-8 p-6 bg-blue-50/50 border border-blue-100 rounded-2xl animate-in fade-in">
               <div className="flex items-start gap-4">
                 <div className="mt-1">
@@ -529,7 +529,7 @@ export default function PartnerRegisterPage() {
                 <div>
                   <label htmlFor="agreeContract" className="text-sm font-medium text-gray-700 cursor-pointer">
                     Tôi cam kết thông tin cung cấp là chính xác và đồng ý ký xác nhận 
-                    {/* 🚀 SỬA LINK THÀNH BẢN MẪU (TEMPLATE) */}
+                    {/*  SỬA LINK THÀNH BẢN MẪU (TEMPLATE) */}
                     <Link href="/partner/contract" target="_blank" className="text-blue-600 font-bold underline hover:text-blue-800 mx-1">
                       Hợp đồng hợp tác điện tử
                     </Link> 
@@ -575,7 +575,7 @@ export default function PartnerRegisterPage() {
         )}
       </div>
 
-      {/* 🚀 MODAL HƯỚNG DẪN CHUYỂN KHOẢN KÝ QUỸ */}
+      {/*  MODAL HƯỚNG DẪN CHUYỂN KHOẢN KÝ QUỸ */}
       {showDepositModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl text-center">

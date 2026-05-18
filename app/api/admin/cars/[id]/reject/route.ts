@@ -15,7 +15,7 @@ export async function POST(request: Request, context: { params: { id: string } }
 
     // 2. Lấy dữ liệu từ Request và Params
     const { reason } = await request.json();
-    const { id } = await context.params; // 🚀 Xử lý async params
+    const { id } = await context.params; //  Xử lý async params
     const carId = Number(id);
 
     if (isNaN(carId)) {

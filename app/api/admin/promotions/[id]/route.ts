@@ -7,7 +7,7 @@ import prisma from "@/lib/prisma";
 // 1. CẬP NHẬT THÔNG TIN MÃ
 export async function PATCH(request, { params }) {
   try {
-    // 🚀 BƯỚC 1: BẮT BUỘC PHẢI AWAIT PARAMS Ở NEXT.JS 15
+    //  BƯỚC 1: BẮT BUỘC PHẢI AWAIT PARAMS Ở NEXT.JS 15
     const resolvedParams = await params; 
     const id = Number(resolvedParams.id);
 

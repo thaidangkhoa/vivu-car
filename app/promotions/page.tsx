@@ -37,7 +37,7 @@ export default function PromotionsPage() {
     return `Giảm ${discount.toLocaleString("vi-VN")}đ`;
   };
 
-  // 🚀 Hàm phân loại giao diện (Icon & Màu sắc) dựa trên Type của Backend
+  //  Hàm phân loại giao diện (Icon & Màu sắc) dựa trên Type của Backend
   const getPromoTheme = (type, code) => {
     const typeStr = (type || "").toUpperCase();
     const codeStr = (code || "").toUpperCase();

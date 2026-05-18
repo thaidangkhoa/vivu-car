@@ -55,7 +55,7 @@ export async function POST(request: Request) {
        return NextResponse.json({ error: "Chỉ có thể đánh giá chuyến đi đã hoàn thành" }, { status: 400 });
     }
 
-    // 🚀 Tạo đánh giá lưu vào Database
+    //  Tạo đánh giá lưu vào Database
     const newReview = await prisma.review.create({
       data: {
         rating: Number(rating),

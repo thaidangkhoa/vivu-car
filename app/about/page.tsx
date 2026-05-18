@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { ShieldCheck, Car, HelpCircle, PhoneCall, ArrowRight, FileText, Newspaper, Calendar, Compass, MapPin, Star, Users } from "lucide-react";
 import Link from "next/link";
 
-// 🚀 HÀM 1: LẤY TIN TỨC TỪ VNEXPRESS (ĐÃ VÁ LỖI HOTLINKING)
+//  HÀM 1: LẤY TIN TỨC TỪ VNEXPRESS (ĐÃ VÁ LỖI HOTLINKING)
 async function getCarNews() {
   try {
     const rssUrl = 'https://vnexpress.net/rss/oto-xe-may.rss';
@@ -38,7 +38,7 @@ async function getCarNews() {
   }
 }
 
-// 🚀 HÀM 2: MỞ RỘNG TOÀN BỘ 12 ĐỊA ĐIỂM DU LỊCH
+//  HÀM 2: MỞ RỘNG TOÀN BỘ 12 ĐỊA ĐIỂM DU LỊCH
 function getTravelGuides() {
   return [
     { value: "HaNoi", name: "Hà Nội", desc: "Thủ đô nghìn năm văn hiến, góc phố cổ kính hòa quyện cùng nhịp sống hiện đại.", img: "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&q=80&w=400" },
@@ -74,7 +74,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#f8fafc] pt-28 pb-20 font-sans relative overflow-hidden">
       
-      {/* 🚀 1. HIỆU ỨNG BACKGROUND HAI BÊN SƯỜN */}
+      {/*  1. HIỆU ỨNG BACKGROUND HAI BÊN SƯỜN */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
         {/* Đốm sáng hai bên */}
@@ -124,7 +124,7 @@ export default function AboutPage() {
               alt="Câu chuyện nền tảng"
             />
 
-            {/* 🚀 2. THẺ NỔI (FLOATING BADGES) TRANG TRÍ MẶT BÊN CẠNH */}
+            {/*  2. THẺ NỔI (FLOATING BADGES) TRANG TRÍ MẶT BÊN CẠNH */}
             <div className="absolute top-10 -left-10 bg-white p-4 rounded-3xl shadow-2xl z-20 animate-bounce hover:scale-105 transition-transform" style={{ animationDuration: '3s' }}>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
@@ -174,7 +174,7 @@ export default function AboutPage() {
           ))}
         </div>
 
-        {/* 🚀 3. MỞ RỘNG TOÀN BỘ 12 ĐỊA ĐIỂM DU LỊCH */}
+        {/*  3. MỞ RỘNG TOÀN BỘ 12 ĐỊA ĐIỂM DU LỊCH */}
         <div className="mb-32 relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <div>
@@ -213,7 +213,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* 🚀 4. GÓC TIN TỨC (ĐÃ FIX LỖI ẢNH) */}
+        {/*  4. GÓC TIN TỨC (ĐÃ FIX LỖI ẢNH) */}
         {newsArticles.length > 0 && (
           <div className="mb-32 relative z-10">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">

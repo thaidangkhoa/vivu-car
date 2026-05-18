@@ -5,7 +5,7 @@ import Link from "next/link";
 import { 
   Plus, CarFront, CheckCircle2, Clock, 
   CalendarDays, CalendarClock, Building2, Handshake,
-  EyeOff, XCircle // 🚀 THÊM ICON NÀY
+  EyeOff, XCircle //  THÊM ICON NÀY
 } from "lucide-react";
 import ActionButtons from "./ActionButtons"; 
 
@@ -64,7 +64,7 @@ export default async function AdminCarsManagerPage({ searchParams }: any) {
                 const isBusy = !!currentBooking;
 
                 return (
-                  // 🚀 LÀM MỜ XE BỊ ẨN ĐỂ ADMIN DỄ NHÌN
+                  //  LÀM MỜ XE BỊ ẨN ĐỂ ADMIN DỄ NHÌN
                   <tr key={car.id} className={`hover:bg-blue-50/30 transition-colors group ${car.status === 'HIDDEN' ? 'opacity-70 grayscale-[20%]' : ''}`}>
                     <td className="p-5 font-bold text-gray-400 text-sm">#{car.id}</td>
                     <td className="p-5">
@@ -92,7 +92,7 @@ export default async function AdminCarsManagerPage({ searchParams }: any) {
                       {new Intl.NumberFormat('vi-VN').format(car.priceDiscount)}đ
                     </td>
                     
-                    {/* 🚀 ĐÃ SỬA CỘT TRẠNG THÁI HIỂN THỊ CHUẨN XÁC HƠN */}
+                    {/*  ĐÃ SỬA CỘT TRẠNG THÁI HIỂN THỊ CHUẨN XÁC HƠN */}
                     <td className="p-5">
                       {car.status === 'HIDDEN' ? (
                         <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold border border-gray-200">
@@ -137,7 +137,7 @@ export default async function AdminCarsManagerPage({ searchParams }: any) {
                       )}
                     </td>
                     <td className="p-5">
-                      {/* 🚀 TRUYỀN THÊM BIẾN VÀO ACTION BUTTONS */}
+                      {/*  TRUYỀN THÊM BIẾN VÀO ACTION BUTTONS */}
                       <ActionButtons carId={car.id} currentStatus={car.status} carName={car.name} />
                     </td>
                   </tr>

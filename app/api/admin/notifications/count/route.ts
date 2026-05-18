@@ -27,7 +27,7 @@ export async function GET() {
       where: { status: "PENDING" }
     });
 
-    // 🚀 4. HỦY XE NHƯNG CHƯA HOÀN TIỀN 
+    //  4. HỦY XE NHƯNG CHƯA HOÀN TIỀN 
     // Logic: Đơn đã CANCELLED nhưng khách đã cọc (DEPOSITED) hoặc trả đủ (PAID_FULL)
     const pendingRefunds = await prisma.booking.count({
       where: { 
@@ -36,7 +36,7 @@ export async function GET() {
       }
     });
 
-    // 🚀 5. YÊU CẦU RÚT TIỀN (Khớp với bảng Transaction của bạn)
+    //  5. YÊU CẦU RÚT TIỀN (Khớp với bảng Transaction của bạn)
     const pendingWithdrawals = await prisma.transaction.count({
       where: { 
         type: "PAYOUT", 
@@ -44,7 +44,7 @@ export async function GET() {
       }
     });
 
-    // 🚀 6. YÊU CẦU HỖ TRỢ (Khớp với bảng ContactMessage của bạn)
+    //  6. YÊU CẦU HỖ TRỢ (Khớp với bảng ContactMessage của bạn)
     const pendingContacts = await prisma.contactMessage.count({
       where: { status: "PENDING" } 
     });

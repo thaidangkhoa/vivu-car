@@ -6,7 +6,9 @@ import { Lock, Loader2, ArrowRight } from "lucide-react";
 function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const userId = searchParams.get("id"); // Lấy cái ID từ trên thanh URL xuống
+  
+  // ĐÃ SỬA: Lấy 'token' từ trên thanh URL xuống thay vì 'id'
+  const token = searchParams.get("token"); 
 
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
@@ -16,7 +18,9 @@ function ResetPasswordForm() {
   const handleSubmit = async () => {
     if (password.length < 6) return setError("Mật khẩu phải có ít nhất 6 ký tự!");
     if (password !== confirmPass) return setError("Mật khẩu xác nhận không khớp!");
-    if (!userId) return setError("Đường dẫn không hợp lệ. Vui lòng xin lại link mới!");
+    
+    // ĐÃ SỬA: Kiểm tra sự tồn tại của token
+    if (!token) return setError("Đường dẫn không hợp lệ hoặc đã hết hạn. Vui lòng xin lại link mới!");
 
     setIsLoading(true);
     setError("");
@@ -25,7 +29,8 @@ function ResetPasswordForm() {
       const res = await fetch("/api/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, newPassword: password }),
+        // ĐÃ SỬA: Gửi đúng `token` qua body thay vì `userId`
+        body: JSON.stringify({ token, newPassword: password }),
       });
       const data = await res.json();
 
@@ -42,10 +47,11 @@ function ResetPasswordForm() {
     }
   };
 
-  if (!userId) {
+  // ĐÃ SỬA: Chặn không cho render form nếu không có token trên URL
+  if (!token) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <h1 className="text-2xl font-black text-red-500">❌ Đường dẫn không hợp lệ!</h1>
+        <h1 className="text-2xl font-black text-red-500">❌ Đường dẫn không hợp lệ hoặc đã hết hạn!</h1>
       </div>
     );
   }

@@ -8,7 +8,7 @@ import {
   Youtube, Instagram, Linkedin, ChevronRight, ShieldCheck, Sparkles 
 } from "lucide-react";
 
-// 🚀 Khai báo mảng 12 địa điểm đồng bộ với hệ thống
+// Khai báo mảng 12 địa điểm
 const FOOTER_LOCATIONS = [
   { name: "Hà Nội", value: "HaNoi" },
   { name: "TP. Hồ Chí Minh", value: "TPHCM" },
@@ -24,18 +24,27 @@ const FOOTER_LOCATIONS = [
   { name: "Quy Nhơn", value: "QuyNhon" },
 ];
 
+//  THÊM MỚI: Khai báo mảng Chính sách với đường dẫn URL thật
+const POLICY_LINKS = [
+  { name: "Điều kiện giao dịch chung", href: "/policies/terms" },
+  { name: "Chính sách bảo mật dữ liệu", href: "/policies/privacy" },
+  { name: "Điều khoản sử dụng nền tảng", href: "/policies/platform-terms" }, // Trỏ về bản mẫu hợp đồng bạn vừa làm
+  { name: "Chính sách giao nhận xe", href: "/policies/delivery" },
+  { name: "Phương thức thanh toán", href: "/policies/payment" },
+];
+
 export default function Footer() {
   const pathname = usePathname();
 
   // Ẩn Footer ở trang Admin
-  if (pathname.startsWith("/admin")) {
+  if (pathname?.startsWith("/admin")) {
     return null;
   }
 
   return (
     <footer className="print:hidden bg-white border-t border-gray-100 pt-20 pb-8 font-sans relative overflow-hidden">
       
-      {/* 🚀 Đốm sáng mờ trang trí cho Footer thêm công nghệ */}
+      {/* Đốm sáng mờ trang trí */}
       <div className="absolute bottom-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <div className="absolute -bottom-[50%] left-[-10%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px]"></div>
         <div className="absolute -bottom-[50%] right-[-10%] w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px]"></div>
@@ -43,10 +52,9 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         
-        {/* Chia lưới: Cột Địa điểm chiếm nhiều không gian hơn một chút */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
           
-          {/* CỘT 1: BRANDING & GIỚI THIỆU (Span 3) */}
+          {/* CỘT 1: BRANDING & GIỚI THIỆU */}
           <div className="lg:col-span-3 space-y-6">
             <Link href="/" className="flex items-center gap-2 group inline-flex">
               <div className="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center font-bold shadow-lg shadow-blue-200 group-hover:rotate-6 transition-all">
@@ -77,29 +85,29 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* CỘT 2: CHÍNH SÁCH (Span 3) */}
+          {/* CỘT 2: CHÍNH SÁCH (ĐÃ SỬA LỖI LINK) */}
           <div className="lg:col-span-3 lg:pl-8">
             <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <ShieldCheck size={14} /> Chính sách & Điều khoản
             </h3>
             <ul className="space-y-4">
-              {["Điều kiện giao dịch chung", "Chính sách bảo mật dữ liệu", "Điều khoản sử dụng nền tảng", "Chính sách giao nhận xe", "Phương thức thanh toán"].map((item, index) => (
+              {POLICY_LINKS.map((item, index) => (
                 <li key={index}>
-                  <Link href="#" className="text-gray-600 text-sm font-medium hover:text-blue-600 transition-all flex items-center gap-2 group">
+                  {/*  Thay href="#" bằng href={item.href} và dùng item.name */}
+                  <Link href={item.href} className="text-gray-600 text-sm font-medium hover:text-blue-600 transition-all flex items-center gap-2 group">
                     <ChevronRight size={14} className="text-gray-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* CỘT 3: ĐỊA ĐIỂM DỊCH VỤ - GRID 2 CỘT (Span 4) */}
+          {/* CỘT 3: ĐỊA ĐIỂM DỊCH VỤ */}
           <div className="lg:col-span-4">
             <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <MapPin size={14} /> Mạng lưới 12 Tỉnh/Thành
             </h3>
-            {/* 🚀 Lưới 2 cột hiển thị 12 địa điểm cực kỳ gọn gàng */}
             <ul className="grid grid-cols-2 gap-x-4 gap-y-3">
               {FOOTER_LOCATIONS.map((loc, index) => (
                 <li key={index}>
@@ -115,29 +123,27 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* CỘT 4: MẠNG XÃ HỘI & CHỨNG NHẬN (Span 2) */}
+          {/* CỘT 4: MẠNG XÃ HỘI & CHỨNG NHẬN */}
           <div className="lg:col-span-2">
             <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Sparkles size={14} /> Kết nối
             </h3>
             
-            {/* Nút mạng xã hội */}
             <div className="grid grid-cols-4 gap-2 mb-8">
-              <Link href="#" className="w-10 h-10 rounded-2xl bg-gray-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm hover:shadow-blue-200">
+              <Link href="https://facebook.com" target="_blank" className="w-10 h-10 rounded-2xl bg-gray-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm hover:shadow-blue-200">
                 <Facebook size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-2xl bg-gray-50 text-blue-800 flex items-center justify-center hover:bg-blue-800 hover:text-white transition-all shadow-sm hover:shadow-blue-200">
+              <Link href="https://linkedin.com" target="_blank" className="w-10 h-10 rounded-2xl bg-gray-50 text-blue-800 flex items-center justify-center hover:bg-blue-800 hover:text-white transition-all shadow-sm hover:shadow-blue-200">
                 <Linkedin size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-2xl bg-gray-50 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all shadow-sm hover:shadow-red-200">
+              <Link href="https://youtube.com" target="_blank" className="w-10 h-10 rounded-2xl bg-gray-50 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all shadow-sm hover:shadow-red-200">
                 <Youtube size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-2xl bg-gray-50 text-pink-600 flex items-center justify-center hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-500 hover:text-white transition-all shadow-sm hover:shadow-pink-200">
+              <Link href="https://instagram.com" target="_blank" className="w-10 h-10 rounded-2xl bg-gray-50 text-pink-600 flex items-center justify-center hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-500 hover:text-white transition-all shadow-sm hover:shadow-pink-200">
                 <Instagram size={18} />
               </Link>
             </div>
 
-            {/* Chứng nhận */}
             <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Chứng nhận</h3>
             <Link href="http://online.gov.vn" target="_blank" className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-100 rounded-2xl hover:bg-blue-50 hover:border-blue-100 transition-all group">
               <ShieldCheck className="text-blue-600 w-8 h-8 group-hover:scale-110 transition-transform" />
@@ -150,12 +156,12 @@ export default function Footer() {
 
         </div>
         
-        {/* ĐƯỜNG KẺ VÀ COPYRIGHT */}
+        {/* ĐƯỜNG KẺ VÀ COPYRIGHT (ĐÃ SỬA LỖI LINK Ở GÓC DƯỚI) */}
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
           <p>© {new Date().getFullYear()} CÔNG TY TNHH AUTOHUB VIỆT NAM. MST: 0123456789.</p>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-blue-600 transition-colors">Điều khoản</Link>
-            <Link href="#" className="hover:text-blue-600 transition-colors">Bảo mật</Link>
+            <Link href="/policies/platform-terms" className="hover:text-blue-600 transition-colors">Điều khoản</Link>
+            <Link href="/policies/privacy" className="hover:text-blue-600 transition-colors">Bảo mật</Link>
             <Link href="/sitemap" className="hover:text-blue-600 transition-colors">Sitemap</Link>
           </div>
         </div>

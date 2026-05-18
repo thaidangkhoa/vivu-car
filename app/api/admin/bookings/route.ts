@@ -6,7 +6,7 @@ import { sendBookingEmail } from "@/lib/mail";
 
 export async function GET() {
   try {
-    // 🚀 DỌN RÁC TRƯỚC KHI LẤY DỮ LIỆU RA CHO ADMIN XEM
+    //  DỌN RÁC TRƯỚC KHI LẤY DỮ LIỆU RA CHO ADMIN XEM
     const twentyMinutesAgo = new Date(Date.now() - 20 * 60 * 1000);
     await prisma.booking.updateMany({
       where: {
@@ -26,7 +26,7 @@ export async function GET() {
             name: true,
             email: true,
             phone: true,
-            // 🚀 KHÔNG lấy password ở đây để bảo mật
+            //  KHÔNG lấy password ở đây để bảo mật
           }
         }, 
         car: true 

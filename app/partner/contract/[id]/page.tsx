@@ -22,7 +22,7 @@ export default async function PartnerContractPage({ params }) {
     return notFound();
   }
 
-  // 🚀 CHẶN LOGIC: NẾU LÀ XE CÔNG TY THÌ KHÔNG CẦN HỢP ĐỒNG HỢP TÁC
+  //  CHẶN LOGIC: NẾU LÀ XE CÔNG TY THÌ KHÔNG CẦN HỢP ĐỒNG HỢP TÁC
   if (car.ownerType === "COMPANY") {
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans">

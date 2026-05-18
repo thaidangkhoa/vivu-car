@@ -57,7 +57,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const ownerCompensation = Math.round(depositAmt * (1 - platformFeePercent / 100));
 
     // ===============================================================
-    // 🚀 BƯỚC 6: GIAO DỊCH ĐỒNG THỜI (TRANSACTION)
+    //  BƯỚC 6: GIAO DỊCH ĐỒNG THỜI (TRANSACTION)
     // Thực hiện 3 hành động cùng 1 lúc, lỗi 1 cái là rollback (hoàn tác) toàn bộ
     // ===============================================================
     await prisma.$transaction([

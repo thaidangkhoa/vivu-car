@@ -9,7 +9,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   try {
     const session = await getServerSession(authOptions);
     
-    // 🚀 ĐÃ SỬA: Chỉ cần kiểm tra người dùng đã đăng nhập chưa
+    //  ĐÃ SỬA: Chỉ cần kiểm tra người dùng đã đăng nhập chưa
     if (!session || !session.user) {
       return NextResponse.json({ error: "Vui lòng đăng nhập để thực hiện" }, { status: 401 });
     }
@@ -23,7 +23,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       return NextResponse.json({ error: "Thiếu dữ liệu" }, { status: 400 });
     }
 
-    // 🚀 CHỐT CHẶN BẢO MẬT THÔNG MINH (OWNERSHIP)
+    //  CHỐT CHẶN BẢO MẬT THÔNG MINH (OWNERSHIP)
     let existingCar;
     if (session.user.role === "ADMIN") {
       // Admin thì quyền lực tối cao, xử lý được mọi xe

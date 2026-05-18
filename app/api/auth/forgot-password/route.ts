@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
+import crypto from "crypto"; 
 
 const prisma = new PrismaClient();
 
@@ -8,7 +9,7 @@ export async function POST(req: Request) {
   try {
     const { phone } = await req.json();
 
-    // 1. TÌM KHÁCH HÀNG TRONG DATABASE
+    // 1. TÌM KHÁCH HÀNG TRONG DATABASE (Bằng SĐT)
     const user = await prisma.user.findUnique({ 
         where: { phone } 
     });
@@ -29,20 +30,34 @@ export async function POST(req: Request) {
         );
     }
 
-    // 2. TẠO LINK ĐẶT LẠI MẬT KHẨU
-    // Ở đồ án này, chúng ta truyền tạm ID của user lên URL để màn hình sau biết là đang đổi pass cho ai
-    const resetLink = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/reset-password?id=${user.id}`;
+    // ====================================================================
+    // TẠO TOKEN BẢO MẬT VÀ THỜI HẠN (15 PHÚT)
+    // ====================================================================
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const tokenExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 phút
 
-    // 3. TÁI SỬ DỤNG CẤU HÌNH NODEMAILER (Giống hệt phần đặt xe)
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER, // Dùng lại biến môi trường cũ
-        pass: process.env.EMAIL_PASS, // Dùng lại App Password cũ
+    // Cập nhật Token vào Database cho User này
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        resetPasswordToken: resetToken,
+        resetPasswordExpires: tokenExpiry,
       },
     });
 
-    // 4. THIẾT KẾ GIAO DIỆN EMAIL (Giao diện chuẩn BonbonCar)
+    // 3. TẠO LINK ĐẶT LẠI MẬT KHẨU 
+    const resetLink = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/reset-password?token=${resetToken}`;
+
+    // 4. TÁI SỬ DỤNG CẤU HÌNH NODEMAILER
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS, 
+      },
+    });
+
+    // 5. THIẾT KẾ GIAO DIỆN EMAIL 
     const mailOptions = {
       from: '"ViVuCar Support" <no-reply@vivucar.com>',
       to: user.email, 
@@ -50,12 +65,12 @@ export async function POST(req: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 30px; border: 1px solid #e5e7eb; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
           <div style="text-align: center; margin-bottom: 20px;">
-            <h1 style="color: #1e3a8a; font-style: italic; margin: 0;">BONBONCAR</h1>
+            <h1 style="color: #1e3a8a; font-style: italic; margin: 0;">VIVUCAR</h1>
           </div>
           <h2 style="color: #333; text-align: center;">Yêu cầu đặt lại mật khẩu</h2>
           <p style="color: #555; font-size: 16px;">Chào <b>${user.name}</b>,</p>
-          <p style="color: #555; font-size: 16px;">Chúng tôi nhận được yêu cầu khôi phục mật khẩu cho tài khoản BonbonCar liên kết với số điện thoại <b>${phone}</b> của bạn.</p>
-          <p style="color: #555; font-size: 16px;">Vui lòng click vào nút bên dưới để tiến hành đặt lại mật khẩu mới:</p>
+          <p style="color: #555; font-size: 16px;">Chúng tôi nhận được yêu cầu khôi phục mật khẩu cho tài khoản ViVuCar liên kết với số điện thoại <b>${phone}</b> của bạn.</p>
+          <p style="color: #555; font-size: 16px;">Vui lòng click vào nút bên dưới để tiến hành đặt lại mật khẩu mới. Link này sẽ <b>hết hạn sau 15 phút</b>:</p>
           
           <div style="text-align: center; margin: 35px 0;">
             <a href="${resetLink}" style="background-color: #2563eb; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">ĐẶT LẠI MẬT KHẨU</a>
@@ -68,7 +83,7 @@ export async function POST(req: Request) {
       `,
     };
 
-    // 5. GỬI ĐI VÀ TRẢ KẾT QUẢ VỀ CHO FORM
+    // 6. GỬI ĐI VÀ TRẢ KẾT QUẢ VỀ CHO FORM
     await transporter.sendMail(mailOptions);
     return NextResponse.json({ success: true, message: "Đã gửi email khôi phục thành công!" });
 

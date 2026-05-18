@@ -79,7 +79,7 @@ export default function PartnerDashboard() {
     }
   };
 
-  // 🚀 MỚI: Hàm xử lý Tạm ẩn / Mở lại xe
+  //  MỚI: Hàm xử lý Tạm ẩn / Mở lại xe
   const handleToggleCarStatus = async (carId: number, currentStatus: string, carName: string) => {
     const newStatus = currentStatus === 'APPROVED' ? 'HIDDEN' : 'APPROVED';
     const actionText = newStatus === 'HIDDEN' ? 'TẠM DỪNG HOẠT ĐỘNG' : 'MỞ LẠI HOẠT ĐỘNG';
@@ -224,7 +224,7 @@ export default function PartnerDashboard() {
         {activeTab === "BOOKINGS" ? (
           <RecentBookings bookings={bookings} handleUpdateBookingStatus={handleUpdateBookingStatus} />
         ) : (
-          // 🚀 Truyền thêm handleToggleCarStatus vào MyFleet
+          //  Truyền thêm handleToggleCarStatus vào MyFleet
           <MyFleet myCars={myCars} handleDeleteCar={handleDeleteCar} handleToggleCarStatus={handleToggleCarStatus} />
         )}
 

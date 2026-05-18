@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // 🚀 BƯỚC 1: KIỂM TRA TRÙNG LẶP BIỂN SỐ XE (LỚP PHÒNG THỦ 2)
+    //  BƯỚC 1: KIỂM TRA TRÙNG LẶP BIỂN SỐ XE (LỚP PHÒNG THỦ 2)
     if (body.licensePlate) {
       const existingCar = await prisma.car.findUnique({
         where: {
@@ -48,10 +48,10 @@ export async function POST(req: Request) {
       }
     }
 
-    // 🚀 BƯỚC 2: Tách bỏ 'images' (nếu có) để tránh lỗi Prisma ValidationError
+    //  BƯỚC 2: Tách bỏ 'images' (nếu có) để tránh lỗi Prisma ValidationError
     const { images, ...rest } = body;
 
-    // 🚀 BƯỚC 3: Xử lý dữ liệu linh hoạt (Dù Frontend gửi Mảng hay Chuỗi đều chạy được)
+    //  BƯỚC 3: Xử lý dữ liệu linh hoạt (Dù Frontend gửi Mảng hay Chuỗi đều chạy được)
     const carData = {
       ...rest,
       priceOriginal: Number(body.priceOriginal || 0),
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
       status: body.status || "APPROVED"
     };
 
-    // 🚀 BƯỚC 4: Đưa vào Database
+    //  BƯỚC 4: Đưa vào Database
     const newCar = await prisma.car.create({
       data: carData,
     });

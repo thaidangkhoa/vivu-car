@@ -50,7 +50,7 @@ export const getBookingState = (booking: any) => {
       return state;
     }
 
-    // 🚀 4. TRANH CHẤP (Khách hàng báo cáo sự cố khẩn cấp)
+    //  4. TRANH CHẤP (Khách hàng báo cáo sự cố khẩn cấp)
     if (booking.status === "DISPUTED") {
       state.text = "Tranh chấp sự cố";
       state.badgeClass = "bg-red-600 text-white border-red-700 shadow-md shadow-red-200 animate-pulse";
@@ -58,7 +58,7 @@ export const getBookingState = (booking: any) => {
       return state;
     }
 
-    // 🚀 5. ĐÃ HỦY (Kèm kiểm tra xem đã hoàn tiền chưa)
+    //  5. ĐÃ HỦY (Kèm kiểm tra xem đã hoàn tiền chưa)
     if (booking.status === "CANCELLED") {
       if (booking.paymentStatus === "REFUNDED") {
          state.text = "Đã hủy & Hoàn tiền";

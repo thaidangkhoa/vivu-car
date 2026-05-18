@@ -8,7 +8,7 @@ import {
   CreditCard, MessageSquare, RefreshCcw, CheckCircle2 
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // 🚀 MỚI: Dùng để nhận biết khi Admin chuyển trang
+import { usePathname } from "next/navigation"; //  MỚI: Dùng để nhận biết khi Admin chuyển trang
 
 export default function AdminNotificationBell() {
   const [data, setData] = useState({ 
@@ -17,7 +17,7 @@ export default function AdminNotificationBell() {
   });
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname(); // 🚀 Bắt sự kiện đổi URL
+  const pathname = usePathname(); //  Bắt sự kiện đổi URL
 
   // Đưa logic fetch ra ngoài để tái sử dụng
   const fetchNotifications = async () => {
@@ -32,14 +32,14 @@ export default function AdminNotificationBell() {
     }
   };
 
-  // 🚀 1. LẤY DỮ LIỆU ĐỊNH KỲ VÀ KHI CHUYỂN TRANG
+  //  1. LẤY DỮ LIỆU ĐỊNH KỲ VÀ KHI CHUYỂN TRANG
   useEffect(() => {
     fetchNotifications(); // Gọi ngay khi load hoặc khi pathname thay đổi
     const interval = setInterval(fetchNotifications, 30000); 
     return () => clearInterval(interval);
   }, [pathname]); // <--- Mỗi lần Admin click link đổi trang, chuông tự động cập nhật lại số!
 
-  // 🚀 2. CẬP NHẬT NGAY LẬP TỨC KHI ADMIN QUAY LẠI TRÌNH DUYỆT
+  //  2. CẬP NHẬT NGAY LẬP TỨC KHI ADMIN QUAY LẠI TRÌNH DUYỆT
   useEffect(() => {
     const handleFocus = () => fetchNotifications();
     window.addEventListener("focus", handleFocus);

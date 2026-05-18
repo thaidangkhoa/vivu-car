@@ -14,7 +14,7 @@ export default function LiveSearchBar() {
   const [searchTerm, setSearchTerm] = useState(initialSearch);
 
   useEffect(() => {
-    // 🚀 KỸ THUẬT DEBOUNCE: Đợi 400ms sau khi người dùng ngừng gõ mới cập nhật URL
+    //  KỸ THUẬT DEBOUNCE: Đợi 400ms sau khi người dùng ngừng gõ mới cập nhật URL
     // Giúp trang web cực mượt và không bị "Spam" Database
     const delayDebounceFn = setTimeout(() => {
       const currentName = searchParams.get('name') || '';

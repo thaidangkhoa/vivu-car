@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     
-    // 🚀 BẬT TÍNH NĂNG THEO DÕI: Xem dữ liệu frontend gửi lên có gì
+    //  BẬT TÍNH NĂNG THEO DÕI: Xem dữ liệu frontend gửi lên có gì
     console.log("--- DỮ LIỆU MUỐN LƯU ---", body);
 
     const { carId, startDate, endDate, reason } = body;
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Ngày bắt đầu không được lớn hơn ngày kết thúc" }, { status: 400 });
     }
 
-    // 🚀 BƯỚC 1: BẢO MẬT - Kiểm tra xe này có đúng là của đối tác đang đăng nhập không
+    //  BƯỚC 1: BẢO MẬT - Kiểm tra xe này có đúng là của đối tác đang đăng nhập không
     const carBelongsToUser = await prisma.car.findFirst({
       where: { 
         id: Number(carId), 
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Bạn không có quyền thao tác trên xe này!" }, { status: 403 });
     }
 
-    // 🚀 BƯỚC 2: KIỂM TRA TRÙNG LỊCH VỚI KHÁCH HÀNG ĐÃ ĐẶT (BOOKINGS)
+    //  BƯỚC 2: KIỂM TRA TRÙNG LỊCH VỚI KHÁCH HÀNG ĐÃ ĐẶT (BOOKINGS)
     const overlappingBookings = await prisma.booking.findFirst({
       where: {
         carId: Number(carId),
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
       }, { status: 400 });
     }
 
-    // 🚀 BƯỚC 3: KIỂM TRA TRÙNG LỚP VỚI CÁC LỊCH BẬN ĐÃ TẠO TRƯỚC ĐÓ
+    //  BƯỚC 3: KIỂM TRA TRÙNG LỚP VỚI CÁC LỊCH BẬN ĐÃ TẠO TRƯỚC ĐÓ
     const overlappingBlocks = await prisma.blockedDate.findFirst({
       where: {
         carId: Number(carId),
@@ -103,7 +103,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Khoảng thời gian này đã bị khóa từ trước!" }, { status: 400 });
     }
 
-    // 🚀 BƯỚC 4: TẤT CẢ ĐỀU AN TOÀN -> CHO PHÉP TẠO LỊCH BẬN
+    //  BƯỚC 4: TẤT CẢ ĐỀU AN TOÀN -> CHO PHÉP TẠO LỊCH BẬN
     const newBlock = await prisma.blockedDate.create({
       data: {
         carId: Number(carId),

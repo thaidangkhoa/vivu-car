@@ -19,7 +19,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     const car = await prisma.car.findUnique({
       where: { id: parseInt(id) },
       include: { 
-        // 🚀 ĐÃ VÁ LỖI TẠI ĐÂY: Kéo cả những đơn đang IN_PROGRESS xuống giao diện
+        //  ĐÃ VÁ LỖI TẠI ĐÂY: Kéo cả những đơn đang IN_PROGRESS xuống giao diện
         bookings: {
           where: { 
             OR: [
@@ -132,7 +132,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
 
     const body = await request.json();
 
-    // 🚀 ĐÃ SỬA TẠI ĐÂY: Chặn đứng wallet và walletId không cho chui vào Prisma
+    //  ĐÃ SỬA TẠI ĐÂY: Chặn đứng wallet và walletId không cho chui vào Prisma
     const { 
       id, createdAt, updatedAt, bookings, user, userId, 
       blockedDates, reviews, wallet, walletId, 

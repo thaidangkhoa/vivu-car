@@ -5,7 +5,7 @@
 import Link from "next/link";
 import { CarFront, CalendarDays, Plus, Edit, Trash2, Banknote, CheckCircle2, Clock, XCircle, EyeOff, Eye, Handshake } from "lucide-react";
 
-export default function MyFleet({ myCars, handleDeleteCar, handleToggleCarStatus }) { // 🚀 Nhận thêm prop mới
+export default function MyFleet({ myCars, handleDeleteCar, handleToggleCarStatus }) { //  Nhận thêm prop mới
   return (
     <div className="bg-white p-6 md:p-8 rounded-[32px] shadow-sm border border-gray-100 animate-in fade-in slide-in-from-bottom-10 duration-1000">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b-2 border-gray-50 pb-6">
@@ -31,7 +31,7 @@ export default function MyFleet({ myCars, handleDeleteCar, handleToggleCarStatus
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${
                   car.status === 'APPROVED' ? 'bg-green-100 text-green-600' : 
                   car.status === 'PENDING' ? 'bg-yellow-100 text-yellow-600' : 
-                  car.status === 'REJECTED' ? 'bg-red-100 text-red-500' : 'bg-gray-200 text-gray-500' // 🚀 HIDDEN
+                  car.status === 'REJECTED' ? 'bg-red-100 text-red-500' : 'bg-gray-200 text-gray-500' //  HIDDEN
                 }`}>
                   {car.status === 'HIDDEN' ? <EyeOff size={28} /> : <CarFront size={28} />}
                 </div>
@@ -92,14 +92,14 @@ export default function MyFleet({ myCars, handleDeleteCar, handleToggleCarStatus
                 </div>
 
                 {/* KHU VỰC NÚT THAO TÁC (Sửa / Ẩn / Mở / Xóa) */}
-                {/* 🚀 NÚT XEM HỢP ĐỒNG ĐIỆN TỬ */}
+                {/*  NÚT XEM HỢP ĐỒNG ĐIỆN TỬ */}
 
                 <div className="flex sm:flex-col gap-2 w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-gray-100 pt-3 sm:pt-0 sm:pl-3">
                   <Link href={`/partner/cars/${car.id}/edit`} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 py-2 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-all text-[10px] font-black uppercase tracking-widest">
                     <Edit size={14} /> Sửa
                   </Link>
 
-                  {/* 🚀 NÚT BẤM ẨN / MỞ */}
+                  {/*  NÚT BẤM ẨN / MỞ */}
                   {car.status === 'APPROVED' && (
                     <button onClick={() => handleToggleCarStatus(car.id, car.status, car.name)} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 py-2 bg-gray-100 text-gray-500 hover:bg-gray-500 hover:text-white rounded-lg transition-all text-[10px] font-black uppercase tracking-widest">
                       <EyeOff size={14} /> Tạm Ẩn

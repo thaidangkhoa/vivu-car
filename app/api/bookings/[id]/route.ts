@@ -19,7 +19,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       return NextResponse.json({ error: "ID đơn hàng không hợp lệ" }, { status: 400 });
     }
 
-    // 🚀 SỬA LỖI 1: Lấy chi tiết đơn hàng KÈM THÔNG TIN XE VÀ NGƯỜI ĐẶT
+    //  SỬA LỖI 1: Lấy chi tiết đơn hàng KÈM THÔNG TIN XE VÀ NGƯỜI ĐẶT
     let booking = await prisma.booking.findUnique({
       where: { id: bookingId },
       include: {
@@ -34,7 +34,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       return NextResponse.json({ error: "Không tìm thấy đơn hàng" }, { status: 404 });
     }
 
-    // 🚀 BẮT ĐẦU: CHIÊU THỨC LAZY UPDATE (HỦY ĐƠN QUÁ HẠN 20 PHÚT)
+    //  BẮT ĐẦU: CHIÊU THỨC LAZY UPDATE (HỦY ĐƠN QUÁ HẠN 20 PHÚT)
     if (booking.status === "PENDING") {
       const createdAtTime = new Date(booking.createdAt).getTime();
       const currentTime = Date.now();
@@ -52,9 +52,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
         booking = updatedBooking;
       }
     }
-    // 🚀 KẾT THÚC LAZY UPDATE
+    //  KẾT THÚC LAZY UPDATE
 
-    // 🚀 SỬA LỖI 2: Dùng userId để kiểm tra quyền thay vì userEmail
+    //  SỬA LỖI 2: Dùng userId để kiểm tra quyền thay vì userEmail
     const currentUserId = Number(session.user.id);
     const isRenter = booking.userId === currentUserId;
     const isOwner = booking.car?.userId === currentUserId;
